@@ -1,0 +1,98 @@
+{% extends "user/base-profile.html" %}
+{% set tab = 'profile' %}
+{% block user_media %}
+    {% include "timezone/media-css.html" %}
+    {{ form.media.css }}
+    <style>
+        ul.sortedm2m {
+            min-height: 70px;
+            max-height: 200px;
+        }
+    </style>
+{% endblock %}
+
+{% block js_media %}
+    {% include "timezone/media-js.html" %}
+    {{ form.media.js }}
+    <script type="text/javascript">
+        $(function () {
+            $('#ace_user_script').on('ace_load', function (e, editor) {
+                editor.getSession().setMode("ace/mode/javascript");
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block user_content %}
+    <form id="edit-form" method="post" class="ui fluid clearing segment">
+        <div class="ui form">
+            {% if form.errors %}
+                <div class="ui error message">
+                    <i class="close icon"></i>
+                    <ul class="list">
+                        <li>{{ form.non_field_errors() }}</li>
+                    </ul>
+                </div>
+            {% endif %}
+
+            {% csrf_token %}
+
+            <div class="field">
+                <label>{{ _('Display name') }}:</label>
+                {{ form.name }}
+            </div>
+
+            <div class="field">
+                <label>{{ _('Self-description') }}:</label>
+                {{ form.about }}
+            </div>
+
+            <div class="two fields">
+                <div class="field">
+                    <label>{{ _('Timezone') }}</label>
+                    {{ form.timezone }}
+                </div>
+                <div class="field">
+                    <label>{{ _('Preferred language') }}</label>
+                    {{ form.language }}
+                </div>
+            </div>
+            <div class="two fields">
+                <div class="field">
+                    <label>{{ _('Editor theme') }}</label>
+                    {{ form.ace_theme }}
+                </div>
+                <div class="field">
+                    <label>{{ _('Math engine') }}</label>
+                    {{ form.math_engine }}
+                </div>
+            </div>
+            {% if form.newsletter %}
+                <div class="field">
+                    <div class="ui checkbox">
+                        {{ form.newsletter }}
+                        <label for="id_newsletter">
+                            {{- _('Notify me about upcoming contests') -}}
+                        </label>
+                    </div>
+                </div>
+            {% endif %}
+            <div class="field">
+                <div class="ui checkbox">
+                    {{ form.test_site }}
+                    <label for="id_test_site">
+                        {{- form.test_site.label -}}
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="ui items">
+            <div class="item">
+                <label>{{ _('Affiliated organizations') }}
+                {{ form.organizations }}
+                    </label>
+            </div>
+        </div>
+        <input class="ui right floated button" type="submit" style="float:right" value="{{ _('Update profile') }}">
+    </form>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "admin/base.html" %}
+{% load admin_static %}
+
+{% block extrahead %}
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+{% endblock %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    <style>
+        .field-tree_actions {
+            white-space: nowrap;
+        }
+    </style>
+{% endblock %}
+
+{% block extrajs %}
+    {{ form.media.js }}
+{% endblock %}
+
+{% block copyright %}
+    <a href="//github.com/monouno/OnlineJudge" target="_blank">Online Judge System for college education</a>
+    <br>AGPL-3.0
+{% endblock %}

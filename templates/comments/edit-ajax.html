@@ -1,0 +1,23 @@
+<div class="comment-submit">
+    <form id="comment-edit" action="{{ request.get_full_path() }}" method="post">
+        <span style="display: none" class="comment-id">{{ comment.id }}</span>
+        <span style="display: none" class="read-back">{{ url('comment_content', comment.id) }}</span>
+        {% csrf_token %}
+        {% if form.errors %}
+            <div class="ui error message">
+                <i class="close icon"></i>
+                <ul class="list">
+                    {% if form.non_field_errors() %}
+                        <li>{{ form.non_field_errors() }}</li>
+                    {% elif form.body.errors %}
+                        <li>{{ form.body.errors }}</li>
+                    {% endif %}
+                </ul>
+            </div>
+        {% endif %}
+        <div class="comment-post-wrapper">
+            <div id="comment-form-body">{{ form.body }}</div>
+        </div>
+        <input style="float: right" type="submit" value="Post!" class="button">
+    </form>
+</div>

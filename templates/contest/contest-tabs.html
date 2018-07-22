@@ -1,0 +1,59 @@
+{% extends "tabs-base.html" %}
+
+{% block tabs %}
+    {{ make_tab('detail', 'fa-info-circle', url('contest_view', contest.key), _('Info')) }}
+
+    {% if contest.start_time <= now or perms.judge.see_private_contest %}
+        {% if contest.show_scoreboard or perms.judge.see_private_contest or in_contest %}
+            {{ make_tab('ranking', 'fa-bar-chart', url('contest_ranking', contest.key), _('Rankings')) }}
+        {% else %}
+            {{ make_tab('ranking', 'fa-bar-chart', None, _('Hidden Rankings')) }}
+        {% endif %}
+        {% if contest.show_scoreboard and request.user.is_authenticated %}
+            {{ make_tab('participation', 'fa-users', url('contest_participation_own', contest.key), _('Participation')) }}
+        {% endif %}
+    {% endif %}
+    {% if perms.judge.change_contest %}
+        {{ make_tab('edit', 'fa-edit', url('admin:judge_contest_change', contest.id), _('Edit')) }}
+    {% endif %}
+
+    {% if request.user.is_authenticated %}
+        {% if contest.can_join or participating or is_organizer %}
+            {% if contest.ended %}
+                {% if in_contest %}
+                    {# They're in the contest because they're participating virtually #}
+                    <a href="{{ url('contest_leave', contest.key) }}"
+                       class="unselectable button leaving-forever button-width-small button-primary">{{ _('Leave contest') }}</a>
+                {% else %}
+                    {# They're in the contest because they're participating virtually #}
+                    <a href="{{ url('contest_join', contest.key) }}"
+                       class="unselectable button button-width-small button-primary">{{ _('Virtual join') }}</a>
+                {% endif %}
+            {% else %}
+                {% if in_contest %}
+                    {# Allow people with ended participations to continue spectating #}
+                    <a href="{{ url('contest_leave', contest.key) }}"
+                       class="unselectable button button-width-small button-primary">
+                        {%- if participating and participation.ended or request.user.profile in contest.organizers.all() %}
+                            {{- _('Stop spectating') -}}
+                        {% else %}
+                            {{- _('Leave contest') -}}
+                        {% endif %}
+                    </a>
+                {% elif participating and participation.ended or is_organizer %}
+                    <a href="{{ url('contest_join', contest.key) }}"
+                       class="unselectable button button-width-small button-primary">{{ _('Spectate contest') }}</a>
+                {% elif participating %}
+                    <a href="{{ url('contest_join', contest.key) }}"
+                       class="unselectable button button-width-small button-primary">{{ _('Join contest') }}</a>
+                {% else %}
+                    <a href="{{ url('contest_join', contest.key) }}"
+                       class="unselectable button first-join button-width-small button-primary">{{ _('Join contest') }}</a>
+                {% endif %}
+            {% endif %}
+        {% endif %}
+    {% elif contest.can_join %}
+        <a href="{{ url('auth_login') }}?next={{ LOGIN_RETURN_PATH|urlencode }}"
+           class="unselectable button button-width-small button-primary">{{ _('Login to participate') }}</a>
+    {% endif %}
+{% endblock %}

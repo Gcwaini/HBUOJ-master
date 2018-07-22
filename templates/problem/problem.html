@@ -1,0 +1,306 @@
+{% extends "common-content.html" %}
+{% block content_title_icon %}
+    {% if request.user.is_authenticated %}
+        {% if problem.id in completed_problem_ids %}
+            <a href="{{ url('user_submissions', problem.code, request.user.username) }}">
+                {% if problem.is_public or request.in_contest %}
+                    <i class="solved-problem-color title-state fa fa-check-circle"></i>
+                {% else %}
+                    <i class="solved-problem-color title-state fa fa-lock"></i>
+                {% endif %}
+            </a>
+        {% elif problem.id in attempted_problems %}
+            <a href="{{ url('user_submissions', problem.code, request.user.username) }}">
+                {% if problem.is_public or request.in_contest %}
+                    <i class="attempted-problem-color title-state fa fa-minus-circle"></i>
+                {% else %}
+                    <i class="attempted-problem-color title-state fa fa-lock"></i>
+                {% endif %}
+            </a>
+        {% endif %}
+    {% endif %}
+{% endblock %}
+{% block content_title %}{{ title }}{% endblock %}
+{% block content_media %}
+    {% include "comments/media-css.html" %}
+    <style>
+        .title-state {
+            float: left;
+            width: 1.1em;
+            display: block;
+            margin-top: 0.16em;
+        }
+
+        .info-float a {
+            vertical-align: middle;
+        }
+
+        .problem-clarification {
+            border-bottom: 1px solid #ccc;
+            margin-top: 1em;
+            margin-bottom: 1em;
+        }
+
+        .clarifications-area {
+            background: white;
+            padding: 10px;
+        }
+
+        .clarifications-area h3 {
+            margin-bottom: 20px;
+        }
+
+        .problem-clarification .body {
+            display: inline-block;
+            padding-left: 3em;
+        }
+
+        #web-ide {
+            display: none;
+            position: -webkit-sticky;
+            position: sticky;
+            bottom: 0;
+            height: 300px;
+            width: 100%;
+            z-index: 100;
+        }
+    </style>
+{% endblock %}
+
+{% block content_js_media %}
+    {% include "comments/media-js.html" %}
+    <script>
+        function show_ide() {
+            $('#web-ide').toggle();
+        }
+
+        $(function () {
+            $('a#clone-link').click(function (event) {
+                event.preventDefault();
+                if (confirm('Are you sure you want to clone?'))
+                    $(this).closest("form").submit();
+            })
+        });
+    </script>
+{% endblock %}
+
+{% block info_float %}
+    <div class="ui vertical fluid menu">
+        <div class="item">
+            <div class="header">{{ _('详情') }}</div>
+            <div class="ui list">
+                <div class="item problem-info-entry">
+                    <i class="fa fa-check fa-fw"></i><span class="pi-name">{{ _('Points:') }}</span>
+                    <span class="pi-value">
+            {% if contest_problem %}
+                {{ contest_problem.points }}{% if contest_problem.partial %} {{ _('(partial)') }}{% endif %}
+            {% else %}
+                {{ problem.points|floatformat }}{% if problem.partial %} {{ _('(partial)') }}{% endif %}
+            {% endif %}
+                </span>
+                </div>
+                <div class="item problem-info-entry">
+                    <i class="fa fa-clock-o fa-fw"></i><span class="pi-name">{{ _('Time limit:') }}</span>
+                    <span class="pi-value">{{ problem.time_limit }}s</span>
+                </div>
+                <div class="item problem-lang-limits">
+                    {% for name, limit in problem.language_time_limit %}
+                        <div class="lang-limit">
+                            <span class="lang-name">{{ name }}</span>
+                            <span class="lang-tl">{{ limit }}s</span>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="item problem-info-entry">
+                    <i class="fa fa-server fa-fw"></i><span class="pi-name">{{ _('Memory limit:') }}</span>
+                    <span class="pi-value">{{ problem.memory_limit|kbsimpleformat }}</span>
+                </div>
+                <div class="item problem-lang-limits">
+                    {% for name, limit in problem.language_memory_limit %}
+                        <div class="lang-limit">
+                            <span class="lang-name">{{ name }}</span>
+                            <span class="lang-ml">{{ limit|kbsimpleformat }}</span>
+                        </div>
+                    {% endfor %}
+                </div>
+                {% cache 86400 'problem_authors' problem.id LANGUAGE_CODE %}
+                    {% with authors=problem.authors.all() %}
+                        {% if authors %}
+                            <div class="problem-info-entry">
+                                <i class="fa fa-pencil-square-o fa-fw"></i><span
+                                    class="pi-name">{% trans trimmed count=authors|length %}
+                                Author:
+                                {% pluralize count %}
+                                Authors:
+                            {% endtrans %}</span>
+                                <div class="pi-value authors-value">{{ link_users(authors) }}</div>
+                            </div>
+                        {% endif %}
+                    {% endwith %}
+                {% endcache %}
+                <br>
+                {% if not contest_problem or not contest_problem.contest.hide_problem_tags %}
+                    <div id="problem-types" class="item">
+                        {% with types=problem.types_list %}
+                            <div class="toggle closed unselectable">
+                                <i class="fa fa-chevron-right fa-fw"></i>
+                                {% trans trimmed count=problem.types_list|length %}
+                                    Problem type
+                                    {% pluralize count %}
+                                    Problem types
+                                {% endtrans %}
+                            </div>
+                            <div style="display:none" class="toggled">{{ problem.types_list|join(", ") }}</div>
+                        {% endwith %}
+                    </div>
+                    <br>
+                {% endif %}
+                {% if show_languages %}
+                    <div id="allowed-langs" class="item">
+                        <div class="toggle open unselectable">
+                            <i class="fa fa-chevron-right fa-fw"></i>{{ _('Allowed languages') }}
+                        </div>
+                        <div style="margin-bottom:-1em" class="toggled">
+                            {% with usable=problem.usable_common_names, langs=problem.languages_list() %}
+                                {% for lang in langs %}
+                                    {% if lang in usable %}
+                                        {{ lang }}
+                                    {% else %}
+                                        <s title="{{ _('No %(lang)s judge online', lang=lang) }}">{{ lang }}</s>
+                                    {% endif %}
+                                    {% if not loop.last %}, {% endif %}
+                                {% endfor %}
+                            {% endwith %}
+                        </div>
+                    </div>
+                    <br>
+                {% endif %}
+                {% if request.user.is_authenticated and request.in_contest and submission_limit %}
+                    {% if submissions_left > 0 %}
+                        <button onclick="show_ide()" class="unselectable ui fluid blue button">
+                            {{ _('Submit solution') }}
+                        </button>
+                        <div class="submissions-left">
+                            {% trans trimmed counter=submissions_left %}
+                                {{ counter }} submission left
+                                {% pluralize %}
+                                {{ counter }} submissions left
+                            {% endtrans %}
+                        </div>
+                    {% else %}
+                        <button class="unselectable ui fluid button disabled">{{ _('Submit solution') }}</button>
+                        <div class="no-submissions-left submissions-left">{{ _('0 submissions left') }}</div>
+                    {% endif %}
+                {% else %}
+                    <button onclick="show_ide()" class="unselectable ui fluid blue button">
+                        {{ _('Submit solution') }}
+                    </button>
+                {% endif %}
+            </div>
+        </div>
+        <div class="item">
+            <div class="header">{{ _('提交') }}</div>
+            <div class="menu">
+                {% if request.user.is_authenticated and has_submissions %}
+                    <a class="item"
+                       href="{{ url('user_submissions', problem.code, request.user.username) }}">{{ _('My submissions') }}</a>
+                {% endif %}
+                <a class="item"
+                   href="{{ url('chronological_submissions', problem.code) }}">{{ _('All submissions') }}</a>
+                <a class="item" href="{{ url('ranked_submissions', problem.code) }}">{{ _('Best submissions') }}</a>
+                {% if editorial and editorial.is_public %}
+                    <a class="item" href="{{ url('problem_editorial', problem.code) }}">{{ _('Read editorial') }}</a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="item">
+            <div class="header">{{ _('管理') }}</div>
+            <div class="menu">
+                {% if can_edit_problem %}
+                    <a class="item" href="{{ url('problem_ticket_list', problem.code) }}">{{ _('Manage tickets') }}
+                        {% if num_open_tickets %}<span class="badge">{{ num_open_tickets }}</span>{% endif %}
+                    </a>
+                    <a class="item"
+                       href="{{ url('admin:judge_problem_change', problem.id) }}">{{ _('Edit problem') }}</a>
+                    {% if not problem.is_manually_managed %}
+                        <a class="item" href="{{ url('problem_data', problem.code) }}">{{ _('Edit test data') }}</a>
+                    {% endif %}
+                {% endif %}
+                {% if perms.judge.clone_problem %}
+                    <form action="{{ url('problem_clone', problem.code) }}" method="post">
+                        {% csrf_token %}
+                        <a class="item" id="clone-link" href="#">{{ _('Clone problem') }}</a>
+                    </form>
+                {% endif %}
+            </div>
+        </div>
+        <div class="item">
+            <div class="header">{{ _('反馈') }}</div>
+            <div class="menu">
+                {% if request.user.is_authenticated and not request.user.profile.mute %}
+                    <a class="item" href="{{ url('new_problem_ticket', problem.code) }}">
+                        {%- if contest_problem and contest_problem.contest.use_clarifications -%}
+                            {{ _('Request clarification') }}
+                        {%- else -%}
+                            {{ _('Report an issue') }}
+                        {%- endif -%}
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block description %}
+    <div class="problem-content ui segment">
+        {% if has_pdf_render %}
+            <a href="{{ url('problem_pdf', problem.code) }}" class="ui top right attached label view-pdf">
+                <span class="pdf-icon">
+                    <span class="fa fa-file-pdf-o pdf-icon-logo"></span>
+                    <span class="pdf-icon-bar"></span>
+                </span>
+                {{ _('View as PDF') }}
+            </a>
+        {% endif %}
+        {% cache 86400 'problem_html' problem.id MATH_ENGINE LANGUAGE_CODE %}
+            {{ description|markdown("problem", MATH_ENGINE)|reference|str|safe }}
+        {% endcache %}
+
+        {% with license=problem.license %}
+            {% if license %}
+                <span class="license">
+            <a href="{{ url('license', license.key) }}">{{ license.display or license.name }}</a>
+        </span>
+            {% endif %}
+        {% endwith %}
+    </div>
+{% endblock %}
+
+{% block comments %}
+    {% if contest_problem and contest_problem.contest.use_clarifications %}
+        <div class="clarifications-area">
+            <h3><i class="fa fa-question-circle"></i> {{ _('Clarifications') }}</h3>
+            {% if has_clarifications %}
+                {% for clarification in clarifications %}
+                    <div class="problem-clarification">
+                        <div class="time">{{ relative_time(clarification.date) }}</div>
+                        <span class="body">
+                            {{ clarification.description|markdown('problem', MATH_ENGINE)|reference }}
+                        </span>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p class="no-comments-message">{{ _('No clarifications have been made at this time.') }}</p>
+            {% endif %}
+        </div>
+    {% else %}
+        {% include "comments/list.html" %}
+    {% endif %}
+{% endblock %}
+
+{% block description_end %}{% endblock %}
+
+{% block bodyend %}
+    <iframe id="web-ide" src="{{ url('problem_submit', problem.code) }}" frameborder="0"></iframe>
+    {{ super() }}
+{% endblock %}

@@ -1,0 +1,17 @@
+<svg width="160" height="44.00000000000001" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="46" width="162" y="-1" x="-1"/>
+  <g display="none" overflow="visible" y="0" x="0" height="100%" width="100%" id="canvasGrid">
+   <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%" width="100%"/>
+  </g>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <ellipse stroke="#ffffff" ry="20.332022" rx="20.332022" id="svg_2" cy="21.998308" cx="23.164662" stroke-width="0" fill="#444444"/>
+  <path stroke="#000" transform="rotate(-44.54255676269531 23.177171707153324,22.69834136962891) " id="svg_4" d="m16.220583,13.191018l-9.504811,9.508209l9.505694,9.50644l3.457438,-3.457375l-6.049938,-6.049067l6.04868,-6.049072l-3.457063,-3.459138l0,0.000001zm13.911027,0l-3.454934,3.458261l6.048702,6.049064l-6.048702,6.048327l3.454934,3.457357l9.506961,-9.507311l-9.506961,-9.505698z" stroke-opacity="null" stroke-width="0" fill="#DDDDDD"/>
+  <text stroke="#000" transform="matrix(1.2805863186733637,0,0,1.2805863186733637,-19.049812682262576,2.3339943508588434) " font-weight="normal" xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_7" y="24.167843" x="53.616851" fill-opacity="null" stroke-opacity="null" stroke-width="0" fill="#ffffff">HBUOJ</text>
+ </g>
+</svg>

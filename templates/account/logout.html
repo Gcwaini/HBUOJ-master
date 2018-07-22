@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% set title = _('Log out') %}
+{% block media %}
+    <style>
+        #login-panel {
+            position: relative;
+            max-width: 450px;
+            margin: 20vh auto;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    <div id="login-panel">
+        <form method="post" action="{{ url('account_logout') }}" class="ui form clearing segment">
+            <div class="ui header">{{ _('See you later!') }}</div>
+            {% csrf_token %}
+            {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+            {% endif %}
+            <button class="ui right floated button" type="submit">{{ _('Sign Out') }}</button>
+        </form>
+    </div>
+{% endblock %}

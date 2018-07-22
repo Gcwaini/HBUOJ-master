@@ -1,0 +1,55 @@
+{% extends "common-content.html" %}
+
+{% block info_float %}
+    <div class="sidebox">
+        <div class="sidebox-content">
+            {% if request.user.is_authenticated %}
+                {% with profile=request.user.profile %}
+                    {% if profile in organization %}
+                        <a href="{{ url('leave_organization', organization.key) }}"
+                           class="unselectable button full">{{ _('Leave organization') }}</a>
+                    {% elif organization.is_open %}
+                        <a href="{{ url('join_organization', organization.key) }}"
+                           class="unselectable button full">{{ _('Join organization') }}</a>
+                    {% else %}
+                        <a href="{{ url('request_organization', organization.key) }}"
+                           class="unselectable button full">{{ _('Request membership') }}</a>
+                    {% endif %}
+                {% endwith %}
+                <hr>
+            {% endif %}
+            <ul class="sidebox-nav">
+                {% if can_edit %}
+                    <li><a href="{{ url('edit_organization', organization.key) }}">{{ _('Edit organization') }}</a>
+                    </li>
+
+                    {% if not organization.is_open %}
+                        <li>
+                            <a href="{{ url('organization_requests_pending', organization.key) }}">{{ _('View requests') }}</a>
+                        </li>
+                    {% endif %}
+                {% endif %}
+
+                {% if perms.judge.change_organization %}
+                    <li>
+                        <a href="{{ url('admin:judge_organization_change', organization.id) }}">{{ _('Admin organization') }}</a>
+                    </li>
+                {% endif %}
+
+                <li>
+                    <a href="{{ url('organization_users', organization.key) }}">{{ _('View members') }}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}
+
+{% block description_end %}{% endblock %}
+
+{% block description %}
+    <div class="ui segment">
+        {% cache 3600 'organization_html' organization.id MATH_ENGINE %}
+            {{ organization.about|markdown('organization-about', MATH_ENGINE)|reference|str|safe }}
+        {% endcache %}
+    </div>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block js_media %}
+    {{ form.media.js }}
+    <script type="text/javascript">
+        window.django = {jQuery: $};
+
+        function pluralidx(count) {
+            return (count === 1) ? 0 : 1;
+        }
+
+        function gettext(msgid) {
+            return msgid;
+        }
+
+        function interpolate(fmt, obj, named) {
+            if (named) {
+                return fmt.replace(/%\(\w+\)s/g, function (match) {
+                    return String(obj[match.slice(2, -2)])
+                });
+            } else {
+                return fmt.replace(/%s/g, function (match) {
+                    return String(obj.shift())
+                });
+            }
+        }
+
+        $(function () {
+            $(window).resize(function () {
+                $("#id_admins").select2({
+                    width: 'resolve'
+                });
+            });
+        })
+    </script>
+{% endblock %}
+
+{% block media %}
+    {{ form.media.css }}
+    <style>
+        #id_admins {
+            width: 100%;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <form action="" method="post" class="ui clearing segment">
+        {% csrf_token %}
+        {{ form.as_p() }}
+        <button class="ui right floated button" type="submit">{{ _('Update') }}</button>
+        <div style="clear: both;"></div>
+    </form>
+{% endblock %}

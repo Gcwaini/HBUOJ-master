@@ -1,0 +1,25 @@
+{% extends "user/base-users-table.html" %}
+
+{% block after_rank_head %}
+    <th class="header rank">
+        {% if sort_links %}<a href="{{ sort_links.rating }}">{% endif %}
+        <span class="fa fa-star"></span>
+        {%- if sort_links %}{{ sort_order.rating }}</a>{% endif %}
+    </th>
+{% endblock %}
+
+{% block after_rank %}
+    <td>{% if user.rating %}{{ rating_number(user) }}{% endif %}</td>
+{% endblock %}
+
+{% block after_point_head %}
+    <th class="problems">
+        {% if sort_links %}<a href="{{ sort_links.problem_count }}">{% endif %}
+        {{ _('Problems') }}
+        {%- if sort_links %}{{ sort_order.problem_count }}</a>{% endif %}
+    </th>
+{% endblock %}
+
+{% block after_point %}
+    <td>{{ user.problem_count }}</td>
+{% endblock %}

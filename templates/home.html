@@ -1,0 +1,61 @@
+{% extends "blog/list.html" %}
+{% block before_posts %}
+    {% if i18n_config.home_page_top %}
+        {{ render_django(i18n_config.home_page_top, request=request, user_count=user_count, problem_count=problem_count, submission_count=submission_count, language_count=language_count, perms=perms) }}
+    {% endif %}
+
+    {# 主页开头 #}
+    <section class="hero container center text-center">
+        <div>
+            <img src="//oj.hbu.cn/static/icons/title.png" alt="HBU Logo">
+            <h2>河北大学程序设计教学平台</h2>
+            <h4>HeBei University Programming Teaching Platform</h4>
+            <div class="ui big horizontal divided list">
+                <div class="item">
+                    <h3 class="ui header">
+                        <i class="graduation cap icon"></i>
+                        <div class="content">
+                            {{ _('课程测评中心') }}
+                            <div class="sub header">{{ _('一体化课程测评') }}</div>
+                        </div>
+                    </h3>
+                </div>
+                <div class="item">
+                    <h3 class="ui header">
+                        <i class="cube icon"></i>
+                        <div class="content">
+                            {{ _('综合实验平台') }}
+                            <div class="sub header">{{ _('持续集成测试') }}</div>
+                        </div>
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+{% block meta %}
+    {% if i18n_config.meta_description %}
+        <meta name="description" content="{{ i18n_config['meta_description'] }}">
+    {% endif %}
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "url": "{{ DMOJ_SCHEME }}://{{ site.domain }}/",
+            "potentialAction": {
+                "@type": "SearchAction",
+                "target": "{{ DMOJ_SCHEME }}://{{ site.domain }}/problems/?search={search_term_string}",
+                "query-input": "required name=search_term_string"
+            }
+        }
+
+
+
+
+
+
+
+
+    </script>
+{% endblock %}

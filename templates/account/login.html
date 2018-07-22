@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% set title = _('Login') %}
+{% block title_row %}{% endblock %}
+{% block media %}
+    <style>
+        #login-panel {
+            position: relative;
+            max-width: 450px;
+            margin: 20vh auto;
+        }
+
+        .google-icon i {
+            color: #DD4B38;
+        }
+
+        .facebook-icon i {
+            color: #133783;
+        }
+
+        .github-icon i {
+            color: black;
+        }
+
+        .dropbox-icon i {
+            color: #55ACEE;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div id="login-panel">
+        <div class="ui top attached message"><i class="user circle icon"></i>{{ _('统一认证') }}</div>
+        <form action="{{ url('account_login') }}" method="POST" class="ui form attached fluid segment">
+            {% csrf_token %}
+            <div class="field">
+                <div class="ui left icon input">
+                    {{ form['login'] }}
+                    <i class="user icon"></i>
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui left icon input field">
+                    {{ form['password'] }}
+                    <i class="lock icon"></i>
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui checkbox">
+                    <label>{{ form.remember.label_tag() }}</label>
+                    {{ form['remember'] }}
+                </div>
+            </div>
+
+            <button class="ui button" style="float: right; margin: 5px;"
+                    type="submit">{{ _('Login!') }}</button>
+            <a class="ui button" style="float: right; margin: 5px;"
+               href="{{ url('account_reset_password') }}">{{ _('Forgot your password?') }}</a>
+            {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
+            {% endif %}
+            <div style="clear: both"></div>
+        </form>
+        {% if form.errors %}
+            <div class="ui bottom attached warning message">{{ _('Invalid username or password.') }}</div>
+        {% endif %}
+    </div>
+{% endblock %}

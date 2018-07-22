@@ -1,0 +1,294 @@
+{% extends "base.html" %}
+{% block media %}
+    {{ form.media.css }}
+    <style>
+        #content > h2:first-child small {
+            color: #999;
+            font-size: 0.9em;
+            margin-left: 0.3em;
+        }
+
+        #content > h2:first-child .status, #content > h2:first-child .title {
+            display: inline;
+        }
+
+        #content > h2:first-child .fa-check-circle-o {
+            color: #00a900;
+        }
+
+        #content > h2:first-child .fa-exclamation-circle {
+            color: darkred;
+        }
+
+        .ticket-info {
+            position: sticky;
+            top: 60px;
+        }
+
+        .info-box {
+            margin: 5px 0 10px;
+        }
+
+        .info-title {
+            padding: 2px 5px;
+            font-weight: 600;
+            background: #eee;
+        }
+
+        .info-data {
+            padding: 2px 5px;
+        }
+
+        .info-empty {
+            color: #999;
+            font-style: italic;
+        }
+
+        a.edit-notes {
+            float: right;
+        }
+
+        #ticket-notes .info-real :first-child {
+            margin-top: 0;
+        }
+
+        #ticket-notes .info-real :last-child {
+            margin-bottom: 0;
+        }
+
+        #id_notes {
+            width: 100%;
+        }
+
+        .submit {
+            float: right;
+        }
+    </style>
+{% endblock %}
+
+{% block js_media %}
+    {{ form.media.js }}
+    <script src="{{ static('libs/featherlight/featherlight.min.js') }}" type="text/javascript"></script>
+    <script type="text/javascript" src="{{ static('event.js') }}"></script>
+    <script type="text/javascript">
+        $(function () {
+            var $h2 = $('#content').find('> h2:first-child');
+            var $status = $h2.find('.status i'), $title = $h2.find('.title');
+
+            function update_ticket_state(open) {
+                if (open)
+                    $status.removeClass('fa-check-circle-o').addClass('fa-exclamation-circle');
+                else
+                    $status.removeClass('fa-exclamation-circle').addClass('fa-check-circle-o');
+                $('#close-ticket').toggle(open);
+                $('#open-ticket').toggle(!open);
+            }
+
+            $('#close-ticket, #open-ticket').click(function () {
+                var open = $(this).attr('data-open') === '1';
+                $.ajax({
+                    url: $(this).attr('data-ajax'), type: 'POST',
+                    success: function () {
+                        update_ticket_state(open);
+                    },
+                    error: function (data) {
+                        alert('Could not change ticket: ' + data.responseText);
+                    }
+                });
+            });
+
+            $('.edit-notes').featherlight({
+                afterOpen: function () {
+                    var $form = $('#edit-notes');
+                    var that = $;
+                    $form.find('.submit').click(function () {
+                        $.post($('.edit-notes').attr('data-featherlight'), $form.serialize()).done(function (data) {
+                            $('#ticket-notes').find('.info-empty').toggle(!data).end().find('.info-real').html(data);
+                            that.featherlight.current().close();
+                        });
+                        return false;
+                    });
+                }
+            });
+
+            var page_ref_key = 'ticket:open:{{ ticket.id }}', page_close_key = page_ref_key + ':close';
+            var page_ref;
+
+            function increase_page_ref() {
+                if (page_ref_key in localStorage)
+                    localStorage[page_ref_key] = page_ref = +localStorage[page_ref_key] + 1;
+                else
+                    localStorage[page_ref_key] = page_ref = 1;
+            }
+
+            function decrease_page_ref() {
+                if (page_ref_key in localStorage) {
+                    localStorage[page_close_key] = page_ref;
+                    delete localStorage[page_close_key];
+                    localStorage[page_ref_key] = +localStorage[page_ref_key] - 1;
+                }
+                page_ref = null;
+            }
+
+            function is_highest_ref() {
+                console.log(localStorage[page_ref_key], page_ref);
+                if (page_ref_key in localStorage)
+                    return +localStorage[page_ref_key] === page_ref;
+                return true;
+            }
+
+            $(window).on('storage', function (e) {
+                e = e.originalEvent;
+                if (e.key === page_close_key && e.newValue !== null)
+                    if (page_ref != null && page_ref > +e.newValue)
+                        --page_ref;
+            });
+
+            register_notify('ticket', {
+                change: function (enabled) {
+                    if (enabled)
+                        increase_page_ref();
+                }
+            });
+
+            $(window).on('beforeunload', function () {
+                decrease_page_ref();
+            });
+
+            function ticket_status(ticket) {
+                update_ticket_state(ticket.open);
+                if (is_highest_ref())
+                    notify('ticket', (ticket.open ? '{{ _('Reopened: ') }}' :
+                        '{{ _('Closed: ') }}') + $title.text());
+            }
+
+            window.load_dynamic_update = function (last_msg) {
+                return new EventReceiver(
+                    "{{ EVENT_DAEMON_LOCATION }}", "{{ EVENT_DAEMON_POLL_LOCATION }}",
+                    ['ticket-{{ ticket.id }}'], last_msg, function (message) {
+                        console.log(message);
+                        switch (message.type) {
+                            case 'ticket-status':
+                                ticket_status(message);
+                                break;
+                        }
+                    }
+                );
+            }
+        });
+    </script>
+
+    {% if last_msg %}
+        <script type="text/javascript">
+            $(function () {
+                load_dynamic_update({{last_msg}});
+            });
+        </script>
+    {% endif %}
+{% endblock %}
+
+{% block content_title %}
+    <div class="status">
+        <i class="fa {% if ticket.is_open %}fa-exclamation-circle{% else %}fa-check-circle-o{% endif %}"></i>
+    </div>
+    <div class="title">{{ ticket.title }}</div>
+    <small>#{{ ticket.id }}</small>
+{% endblock %}
+
+{% block body %}
+    <div id="common-content">
+        <div id="content-right">
+            <div class="info-float">
+                <div class="sidebox">
+                    <div class="sidebox-content">
+                        <div class="ticket-info">
+                            <div class="info-box">
+                                <div class="info-title">{{ _('Associated object') }}</div>
+                                <div class="info-data">
+                                    <a href="{{ ticket.linked_item.get_absolute_url() }}">{{ ticket.linked_item }}</a>
+                                </div>
+                            </div>
+                            <div class="info-box">
+                                <div class="info-title">{{ _('Assignees') }}</div>
+                                <div class="info-data">
+                                    {% if assignees %}
+                                        {{ link_users(assignees) }}
+                                    {% else %}
+                                        <div class="info-empty">{{ _('No one is assigned.') }}</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <button id="close-ticket" class="button button-primary button-action full"
+                                    data-ajax="{{ url('ticket_close', ticket.id) }}" data-open="0"
+                                    {% if not ticket.is_open %}style="display: none"{% endif %}>{{ _('Close ticket') }}</button>
+                            <button id="open-ticket" class="button button-primary button-caution full"
+                                    data-ajax="{{ url('ticket_open', ticket.id) }}" data-open="1"
+                                    {% if ticket.is_open %}style="display: none"{% endif %}>{{ _('Reopen ticket') }}</button>
+
+                            {% if perms.judge.change_ticket or request.user.profile in assignees %}
+                                <div class="info-box">
+                                    <div class="info-title">{{ _('Assignee notes') }}
+                                        <a href="#" data-featherlight="{{ url('ticket_notes', ticket.id) }}"
+                                           class="edit-notes">
+                                            <i class="fa fa-pencil"></i>
+                                        </a>
+                                    </div>
+                                    <div id="ticket-notes" class="info-data">
+                                        <div{% if ticket.notes %} style="display: none"{% endif %} class="info-empty">
+                                            {{ _('Nothing here.') }}
+                                        </div>
+                                        <div class="info-real">{{ ticket.notes|linebreaks }}</div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="content-left">
+
+            <ul class="comments top-level-comments new-comments">
+                {% for message in messages %}
+                    <li id="message-{{ message.id }}" class="comment">
+                        <div class="comment-display">
+                            <div class="info">
+                                <a href="{{ url('user_page', message.user.user.username) }}" class="user">
+                                    <img src="{{ gravatar(message.user, 135) }}" class="gravatar">
+                                </a>
+                            </div>
+                            <div class="detail">
+                                <div class="header">
+                                    <span class="username {{ message.user.css_class }}">{{ message.user.user.username }}</span>
+                                    <span class="comment-spacer"></span>
+                                    <span class="message-date">{{ message.time|date('DATE_FORMAT') }}</span>
+                                    <span class="message-time">{{ message.time|time('TIME_FORMAT') }}</span>
+                                </div>
+                                <div class="content content-description">
+                                    {{ message.body|markdown('ticket', MATH_ENGINE)|reference|str|safe }}
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+            <form action="" method="post" class="form-area">
+                {% csrf_token %}
+                {% if form.errors %}
+                    <div class="ui error message">
+                        <i class="close icon"></i>
+                        <ul class="list">
+                            <li>{{ form.non_field_errors() }}</li>
+                            <li>{{ form.body.errors }}</li>
+                        </ul>
+                    </div>
+                {% endif %}
+                <div class="body-block">{{ form.body }}</div>
+                <button style="float: right;" type="submit" class="button button-primary">{{ _('Post') }}</button>
+                <div style="clear:both;"></div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

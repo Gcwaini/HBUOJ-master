@@ -1,0 +1,180 @@
+@media (min-width: 400px) {
+  #content-right.users {
+    padding-left: 1.5em; } }
+#content-right.users {
+  flex: 40%;
+  max-width: 17em; }
+
+#content-left.users {
+  flex: 60%; }
+
+td.user-name {
+  padding-left: 2em;
+  text-align: left; }
+
+tr {
+  padding-bottom: 96px; }
+  tr:target {
+    background: #fff897; }
+
+th.header.rank {
+  padding-left: 5px; }
+
+#search-handle {
+  width: 100%;
+  height: 2.3em; }
+
+.user-search-image, .user-search-name {
+  vertical-align: middle; }
+
+.user-search-name {
+  padding-left: 0.5em; }
+
+#users-table .username {
+  width: 100%; }
+#users-table .header {
+  vertical-align: middle; }
+#users-table .rank, #users-table .points, #users-table .problems, #users-table .username {
+  white-space: nowrap; }
+#users-table tr {
+  transition: background-color linear .2s; }
+  #users-table tr:hover {
+    background: #EAEAEA; }
+  #users-table tr.highlight {
+    background: #fff897; }
+
+#search-form {
+  display: inline-block;
+  vertical-align: top;
+  width: 225px;
+  float: right; }
+  #search-form .select2-selection__arrow {
+    display: none; }
+  #search-form .select2-selection__rendered {
+    cursor: text; }
+  #search-form .select2-results__option {
+    position: relative; }
+  #search-form .select2-results__option--highlighted {
+    background-color: #DEDEDE !important; }
+  #search-form li.select2-results__option--highlighted a.user-redirect {
+    display: inline-block; }
+
+a.user-redirect {
+  color: #2980b9;
+  vertical-align: middle;
+  font-size: 1.2em;
+  position: absolute;
+  right: 0.8em;
+  display: none; }
+  a.user-redirect:hover {
+    text-shadow: 0 0 2px blue; }
+
+a.edit-profile {
+  float: right;
+  padding-top: 1em; }
+
+.user-problem-group h3 {
+  font-weight: 600;
+  font-size: 1.25em;
+  margin-bottom: -10px;
+  max-height: 20%;
+  line-height: 2.5em; }
+.user-problem-group ul {
+  -webkit-columns: 300px 4;
+  -moz-columns: 300px 4;
+  columns: 300px 4;
+  list-style-type: none;
+  margin-top: 0;
+  margin-left: -20px;
+  margin-bottom: 0; }
+.user-problem-group a img {
+  max-width: 1em;
+  margin-right: 3px;
+  padding-bottom: 1px;
+  vertical-align: middle; }
+
+.user-info-cell {
+  padding-left: 15px;
+  border-left: 1px solid #CCC; }
+
+.contest-history-cell {
+  border-left: 1px solid #CCC;
+  padding: 0 0.5em; }
+
+.hide-solved-problems {
+  text-align: right;
+  overflow: hidden; }
+
+.hide-solved-problems > span {
+  position: relative;
+  display: inline-block; }
+
+.hide-solved-problems > span:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 100000px;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.2);
+  right: 100%;
+  margin-right: 5px; }
+
+table.user-info-page > tbody > tr > td {
+  margin: 0;
+  vertical-align: top; }
+
+.pp-table .pp {
+  font-weight: 600;
+  font-size: 1.4em; }
+.pp-table .pp-scaled {
+  font-size: 0.8em; }
+.pp-table .pp-weighted {
+  color: #777; }
+.pp-table td.sub-pp {
+  text-align: right; }
+.pp-table td.problem-name {
+  text-align: left;
+  padding-left: 1em; }
+.pp-table td.problem-score {
+  width: 80px; }
+.pp-table td.problem-category {
+  width: 100px; }
+
+#pp-load-link-wrapper {
+  text-align: center;
+  border: 1px solid #ccc; }
+
+#pp-load-more-link {
+  display: block;
+  padding: 0.5em 0; }
+
+.pp-breakdown-header {
+  font-weight: 600;
+  font-size: 1.25em;
+  margin-bottom: 0.2em; }
+
+#rating-chart {
+  max-width: 640px;
+  max-height: 360px;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto; }
+
+#rating-tooltip {
+  display: none;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 3px;
+  border-radius: 3px;
+  transition: all .1s ease;
+  pointer-events: none;
+  transform: translate(-50%, 0); }
+  #rating-tooltip.rate-group {
+    color: white; }
+
+.user-info-page {
+  width: 100%;
+  min-width: 760px; }
+
+/*# sourceMappingURL=users.css.map */

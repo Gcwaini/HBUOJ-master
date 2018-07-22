@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block media %}
+    <style>
+        #id_reason {
+            width: 100%;
+        }
+    </style>
+{% endblock %}
+
+{% block js_media %}
+    <script type="text/javascript">
+        $(function () {
+            $('#id_reason').keydown(function (e) {
+                if (e.ctrlKey && (e.keyCode === 13 || e.keyCode === 10)) {
+                    $(this).closest('form').submit();
+                }
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block body %}
+    <form action="" method="post" class="ui form clearing segment">
+        {% csrf_token %}
+        <div class="field">
+            <p><label for="{{ form.reason.id_for_label }}"><b>{{ _('Your reason for joining:') }}</b></label></p>
+            {{ form.reason }}
+        </div>
+        <button class="ui right floated button" type="submit">{{ _('Request') }}</button>
+    </form>
+{% endblock %}

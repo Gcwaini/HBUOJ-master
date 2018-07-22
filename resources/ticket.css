@@ -1,0 +1,13 @@
+#ticket-list td.problem {
+  text-align: left;
+  padding-left: 1em;
+  width: 50%; }
+#ticket-list td.users {
+  text-align: center;
+  white-space: nowrap; }
+#ticket-list td.assignees {
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis; }
+
+/*# sourceMappingURL=ticket.css.map */

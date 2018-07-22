@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% set title = _('Confirm E-mail Address') %}
+{% block body %}
+    <div class="ui segment">
+        {% if confirmation %}
+            {% set user_display = confirmation.email_address.user %}
+            <form method="POST" class="ui clearing form" action="{{ 'account_confirm_email'|reverseurl(confirmation.key) }}">
+                {% csrf_token %}
+                <p>{% trans email=confirmation.email_address.email %}Please confirm that <a href="mailto:{{ email }}">{{ email }}</a> is an e-mail address for user {{ user_display }}.{% endtrans %}</p>
+                <button class="ui right floated button" type="submit">{{ _('Confirm') }}</button>
+            </form>
+        {% else %}
+            {% set email_url = url('account_email') %}
+            <p>{% trans %}This e-mail confirmation link expired or is invalid. Please <a href="{{ email_url }}">issue a new e-mail confirmation request</a>.{% endtrans %}</p>
+        {% endif %}
+    </div>
+{% endblock %}

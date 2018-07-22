@@ -1,0 +1,37 @@
+.AB {
+  background-color: #767676 !important;
+  color: #fff !important; }
+
+.AC {
+  background-color: #21ba45 !important;
+  color: #fff !important; }
+
+._AC {
+  background-color: #b5cc18 !important;
+  color: #fff !important; }
+
+.WA {
+  background-color: #f2711c !important;
+  color: #fff !important; }
+
+.TLE, .MLE {
+  background-color: #767676 !important;
+  color: #fff !important; }
+
+.OLE, .IR, .RTE, .OTH {
+  background-color: #fbbd08 !important;
+  color: #fff !important; }
+
+.CE {
+  background-color: #767676 !important;
+  color: #fff !important; }
+
+.IE {
+  background-color: #db2828 !important;
+  color: #fff !important; }
+
+.QU, .G {
+  background: #2185d0 !important;
+  color: #fff !important; }
+
+/*# sourceMappingURL=status.css.map */

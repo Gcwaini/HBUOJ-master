@@ -1,0 +1,8 @@
+<form id="edit-notes" action="" method="post" class="ui clearing form vertical segment">
+    {% csrf_token %}
+    <div class="field">
+    <table class="ui header">Assignee note:</table>
+    {{ form.notes }}
+    </div>
+    <button type="submit" class="ui right floated button submit">{{ _('Update') }}</button>
+</form>

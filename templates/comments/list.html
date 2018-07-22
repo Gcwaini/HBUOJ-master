@@ -1,0 +1,163 @@
+<div id="comments" class="ui segment comment-area">
+    <label class="ui top attached label"><i style="padding-right: 0.3em" class="fa fa-comments"></i>{{ _('Comments') }}
+    </label>
+    {% if has_comments %}
+        <div class="ui comments comments top-level-comments new-comments">
+            {% set logged_in = request.user.is_authenticated %}
+            {% set profile = request.user.profile if logged_in else None %}
+            {% for node in mptt_tree(comment_list) recursive %}{% if not node.hidden %}
+                <div id="comment-{{ node.id }}" data-revision="{{ node.revisions - 1 }}"
+                     data-max-revision="{{ node.revisions - 1 }}"
+                     data-revision-ajax="{{ url('comment_revision_ajax', node.id) }}" class="comment">
+                    <a class="avatar">
+                        {% with author=node.author, user=node.author.user %}
+                            <img src="{{ gravatar(author, 32) }}" class="gravatar">
+                        {% endwith %}
+                    </a>
+                    <div class="content">
+                        {{ link_user(node.author) }}
+                        <div class="metadata">
+                            <div class="date">{{ relative_time(node.time, abs=_('commented on {time}'), rel=_('commented {time}')) }}</div>
+                            <div class="vote">
+                                <i class="star icon"></i><span class="comment-score">{{ node.score }}</span> Favers
+                            </div>
+                            {% if node.revisions > 1 %}
+                                <span class="comment-edits">
+                                        <a href="javascript:show_revision({{ node.id }}, -1)"
+                                           class="previous-revision">
+                                            <i class="angle left icon"></i>
+                                        </a>
+                                        <span class="comment-edit-text">
+                                            {% if node.revisions > 2 %}
+                                                {% trans edits=node.revisions - 1 %}edit {{ edits }}{% endtrans %}
+                                            {% else %}
+                                                {{ _('edited') }}
+                                            {% endif %}
+                                        </span>
+                                        <a href="javascript:show_revision({{ node.id }}, 1)" style="visibility: hidden"
+                                           class="next-revision">
+                                            <i class="angle right icon"></i>
+                                        </a>
+                                    </span>
+                            {% else %}
+                                <span class="comment-edits"></span>
+                            {% endif %}
+                        </div>
+                        <div class="text">
+                            <div class="comment-title"{% if not node.title or node.title.startswith('Re:') %}
+                                 style="display: none"{% endif %}>{{ node.title }}</div>
+                            <div class="comment-body">
+                                {{ node.body|markdown('comment', MATH_ENGINE, True)|reference|str|safe }}
+                            </div>
+                        </div>
+                        <div class="actions">
+                            {% if logged_in %}
+                                <a href="javascript:comment_upvote({{ node.id }})"
+                                   class="upvote-link{% if node.vote_score == 1 %}voted{% endif %}">
+                                    <i class="thumbs up outline icon"></i>{{ _('支持') }}
+                                </a>
+                            {% else %}
+                                <a href="javascript:alert('{{ _('Please login to vote')|escapejs }}')"
+                                   title="{{ _('Please login to vote') }}"
+                                   class="upvote-link">
+                                    <i class="thumbs up outline icon"></i>{{ _('支持') }}
+                                </a>
+                            {% endif %}
+                            {% if logged_in %}
+                                <a href="javascript:comment_downvote({{ node.id }})"
+                                   class="downvote-link {% if node.vote_score == -1 %}voted{% endif %}">
+                                    <i class="thumbs down outline icon"></i>{{ _('反对') }}
+                                </a>
+                            {% else %}
+                                <a href="javascript:alert('{{ _('Please login to vote')|escapejs }}')"
+                                   title="{{ _('Please login to vote') }}"
+                                   class="downvote-link">
+                                    <i class="thumbs down outline icon"></i>{{ _('反对') }}
+                                </a>
+                            {% endif %}
+                            <a href="#comment-{{ node.id }}" title="{{ _('Link') }}" class="comment-link">
+                                {{ _('Link') }}
+                            </a>
+                            {% if logged_in %}
+                                {% set can_edit = node.author.id == profile.id and not profile.mute %}
+                                {% if can_edit %}
+                                    <a data-featherlight="{{ url('comment_edit_ajax', node.id) }}"
+                                       href="{{ url('comment_edit', node.id) }}"
+                                       title="{{ _('Edit') }}" class="edit-link">
+                                        {{ _('Edit') }}
+                                    </a>
+                                {% else %}
+                                    <a href="javascript:comment_set_parent({{ node.id }})"
+                                       title="{{ _('Reply') }}">
+                                        {{ _('Reply') }}
+                                    </a>
+                                {% endif %}
+                                {% if perms.judge.change_comment %}
+                                    {% if can_edit %}
+                                        <a href="javascript:comment_set_parent({{ node.id }})"
+                                           title="{{ _('Reply') }}">
+                                            {{ _('Reply') }}
+                                        </a>
+                                    {% else %}
+                                        <a data-featherlight="{{ url('comment_edit_ajax', node.id) }}"
+                                           href="{{ url('comment_edit', node.id) }}" title="{{ _('Edit') }}"
+                                           class="edit-link">
+                                            {{ _('Edit') }}
+                                        </a>
+                                    {% endif %}
+                                    <a href="javascript:" title="{{ _('Hide') }}" data-id="{{ node.id }}"
+                                       class="hide-comment">
+                                        {{ _('Hide') }}
+                                    </a>
+                                    <a href="{{ url('admin:judge_comment_change', node.id) }}"
+                                       title="{{ _('Admin') }}">
+                                        {{ _('Admin') }}
+                                    </a>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% with children=node.get_children() %}
+                    {% if children %}
+                        <div class="comments">{{ loop(children) }}</div>{% endif %}
+                {% endwith %}
+            {% endif %}{% endfor %}
+        </div>
+    {% else %}
+        <p class="no-comments-message">{{ _('There are no comments at the moment.') }}</p>
+    {% endif %}
+
+    {% if request.user.is_authenticated and comment_form %}
+        <div class="ui vertical clearing segment form-area comment-submit">
+            {% block comment_submit_title %}{% endblock %}
+            {% if is_new_user %}
+                <div style="margin-bottom: 0" class="alert alert-info">
+                    {{ _('You need to have solved at least one problem before your voice can be heard.') }}
+                </div>
+            {% else %}
+                <form id="comment-submit" action="" method="post">
+                    {% csrf_token %}
+                    {% if comment_form.errors %}
+                        <div class="ui error message">
+                            <i class="close icon"></i>
+                            <ul class="list">
+                                <li>{{ comment_form.non_field_errors() }}</li>
+                                <li>{{ comment_form.parent.errors }}</li>
+                                {% if comment_form.body.errors %}
+                                    <li>{{ _('Invalid comment body.') }}</li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    {% endif %}
+                    {{ comment_form.parent }}
+                    <div class="comment-post-wrapper">
+                        <div id="comment-form-body">{{ comment_form.body }}</div>
+                    </div>
+                    <input style="float:right; margin: 6px;" type="submit" value="{{ _('Post!') }}"
+                           class="ui right floated button">
+                </form>
+            {% endif %}
+        </div>
+    {% endif %}
+</div>

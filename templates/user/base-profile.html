@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% set title = _('Account') %}
+{% block content_title_icon %}<i class="settings icon"></i>{% endblock %}
+{% block media %}
+    {% block user_media %}{% endblock %}
+{% endblock %}
+
+{% block js_media %}
+    {% block user_js_media %}{% endblock %}
+{% endblock %}
+
+{% block h2_row %}<h2 class="ui header" style="margin-bottom: .5em;margin-left: 76.5%;margin-top: 1.5em;">{% endblock %}
+
+{% block body %}
+    <div class="ui grid">
+        <div class="twelve wide stretched column">
+            {% block user_content %}{% endblock %}
+        </div>
+        <div class="four wide column">
+            <div class="ui vertical fluid menu">
+                <a class="{% if tab == 'profile' %}active teal {% endif %}item"
+                   href="{{ url('user_edit_profile') }}">
+                    {{ _('Edit profile') }}
+                </a>
+                <a class="{% if tab == 'email' %}active teal {% endif %}item" href="{{ url('account_email') }}">
+                    {{ _('Email') }}
+                </a>
+                <a class="{% if tab == 'change_password' %}active teal {% endif %}item" href="{{ url('account_change_password') }}">
+                    {{ _('Change Password') }}
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

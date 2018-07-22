@@ -1,0 +1,5 @@
+<span class="{{ profile.css_class }}">
+	<a href="{{ url('user_page', user.username) }}" title="{{ user.username }}">
+		{{ profile.name if profile.name is not none and profile.name != "" else user.username }}
+	</a>
+</span>

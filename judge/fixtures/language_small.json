@@ -1,0 +1,98 @@
+[
+  {
+    "model": "judge.language",
+    "pk": 1,
+    "fields": {
+      "key": "PY2",
+      "name": "Python 2",
+      "short_name": "",
+      "common_name": "Python",
+      "ace": "python",
+      "pygments": "python",
+      "template": "",
+      "info": "python 2.7.9",
+      "description": "",
+      "extension": ""
+    }
+  },
+  {
+    "model": "judge.language",
+    "pk": 4,
+    "fields": {
+      "key": "C",
+      "name": "C",
+      "short_name": "",
+      "common_name": "C",
+      "ace": "c_cpp",
+      "pygments": "c",
+      "template": "",
+      "info": "gcc 4.9.2",
+      "description": "Compile options: `gcc -std=c99 -Wall -O2 -lm -march=native -s`\r\n",
+      "extension": ""
+    }
+  },
+  {
+    "model": "judge.language",
+    "pk": 6,
+    "fields": {
+      "key": "CPP11",
+      "name": "C++11",
+      "short_name": "C++11",
+      "common_name": "C++",
+      "ace": "c_cpp",
+      "pygments": "cpp",
+      "template": "#include <bits/stdc++.h>\r\nusing namespace std;\r\n\r\nint main() {\r\n    // Talk is cheap, show me the code.\r\n    return 0;\r\n}",
+      "info": "g++-4.9.2 -std=c++11",
+      "description": "Compile options: `g++ -std=c++11 -Wall -O2 -lm -march=native -s`",
+      "extension": ""
+    }
+  },
+  {
+    "model": "judge.language",
+    "pk": 8,
+    "fields": {
+      "key": "PY3",
+      "name": "Python 3",
+      "short_name": null,
+      "common_name": "Python",
+      "ace": "python",
+      "pygments": "python3",
+      "template": "",
+      "info": "python 3.5.2",
+      "description": "",
+      "extension": ""
+    }
+  },
+  {
+    "model": "judge.language",
+    "pk": 9,
+    "fields": {
+      "key": "JAVA8",
+      "name": "Java 8",
+      "short_name": "Java 8",
+      "common_name": "Java",
+      "ace": "java",
+      "pygments": "java",
+      "template": "import java.util.*;\r\n\r\npublic class Main {\r\n    public static void main(String[] args) {\r\n            // Talk is cheap, show me the code.\r\n        }\r\n    }\r\n}",
+      "info": "",
+      "description": "java -version:\r\n\r\n    openjdk version \"1.8.0_131\"\r\n    OpenJDK Runtime Environment (build 1.8.0_131-8u131-b11-2ubuntu1.16.04.3-b11)\r\n    OpenJDK 64-Bit Server VM (build 25.131-b11, mixed mode)",
+      "extension": ""
+    }
+  },
+  {
+    "model": "judge.language",
+    "pk": 10,
+    "fields": {
+      "key": "CPP14",
+      "name": "C++14",
+      "short_name": "C++14",
+      "common_name": "C++",
+      "ace": "c_cpp",
+      "pygments": "cpp",
+      "template": "#include <bits/stdc++.h>\r\nusing namespace std;\r\n\r\nint main() {\r\n    // Talk is cheap, show me the code.\r\n    return 0;\r\n}",
+      "info": "",
+      "description": "g++14",
+      "extension": ""
+    }
+  }
+]

@@ -1,0 +1,114 @@
+[
+  {
+    "model": "judge.navigationbar",
+    "pk": 1,
+    "fields": {
+      "order": 1,
+      "key": "problems",
+      "label": "\u9898\u5e93",
+      "path": "/problems/",
+      "regex": "^/problem",
+      "parent": null,
+      "lft": 1,
+      "rght": 2,
+      "tree_id": 1,
+      "level": 0
+    }
+  },
+  {
+    "model": "judge.navigationbar",
+    "pk": 2,
+    "fields": {
+      "order": 2,
+      "key": "submit",
+      "label": "\u63d0\u4ea4",
+      "path": "/submissions/",
+      "regex": "^/submi|^/src/",
+      "parent": null,
+      "lft": 1,
+      "rght": 2,
+      "tree_id": 2,
+      "level": 0
+    }
+  },
+  {
+    "model": "judge.navigationbar",
+    "pk": 3,
+    "fields": {
+      "order": 3,
+      "key": "user",
+      "label": "\u7528\u6237",
+      "path": "/users/",
+      "regex": "^/user",
+      "parent": null,
+      "lft": 1,
+      "rght": 2,
+      "tree_id": 3,
+      "level": 0
+    }
+  },
+  {
+    "model": "judge.navigationbar",
+    "pk": 5,
+    "fields": {
+      "order": 5,
+      "key": "contest",
+      "label": "\u6bd4\u8d5b",
+      "path": "/contests/",
+      "regex": "^/contest",
+      "parent": null,
+      "lft": 1,
+      "rght": 2,
+      "tree_id": 4,
+      "level": 0
+    }
+  },
+  {
+    "model": "judge.navigationbar",
+    "pk": 6,
+    "fields": {
+      "order": 6,
+      "key": "about",
+      "label": "\u5173\u4e8e",
+      "path": "/about/",
+      "regex": "^/about/$",
+      "parent": null,
+      "lft": 1,
+      "rght": 6,
+      "tree_id": 5,
+      "level": 0
+    }
+  },
+  {
+    "model": "judge.navigationbar",
+    "pk": 7,
+    "fields": {
+      "order": 7,
+      "key": "status",
+      "label": "\u72b6\u6001",
+      "path": "/status/",
+      "regex": "^/status/$|^/judge/",
+      "parent": 6,
+      "lft": 2,
+      "rght": 3,
+      "tree_id": 5,
+      "level": 1
+    }
+  },
+  {
+    "model": "judge.navigationbar",
+    "pk": 8,
+    "fields": {
+      "order": 8,
+      "key": "runtimes",
+      "label": "\u8fd0\u884c\u73af\u5883",
+      "path": "/runtimes/",
+      "regex": "^/runtimes",
+      "parent": 6,
+      "lft": 4,
+      "rght": 5,
+      "tree_id": 5,
+      "level": 1
+    }
+  }
+]

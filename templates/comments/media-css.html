@@ -1,0 +1,37 @@
+{% compress css %}
+    {{ comment_form.media.css }}
+    <style media="all">
+        .featherlight {
+            z-index: 1000;
+        }
+
+        .revision-text p:first-child {
+            margin-top: 0;
+        }
+
+        .revision-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .featherlight-edit .featherlight-content {
+            background: #FAFAFA;
+            padding: 10px 15px 10px 10px;
+            border-radius: 10px;
+            border: 1px solid #CCC;
+        }
+
+        .new-comments .comment .detail {
+            max-width: calc(100% - 134px);
+        }
+
+        .new-comments .info {
+            padding-top: 0.4em;
+            padding-bottom: 0.4em;
+        }
+
+        .comment-author {
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+{% endcompress %}

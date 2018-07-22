@@ -1,0 +1,31 @@
+Django>=1.11,<3
+django_compressor
+django-mptt>=0.8.4,<0.10
+django-reversion
+django-social-share
+django-sortedm2m
+django-impersonate
+lxml
+Pygments
+mistune
+pytz
+django-statici18n
+pika
+ua-parser
+pyyaml
+jinja2
+django_jinja
+llist
+pymysql
+django-redis
+mysqlclient
+django_select2
+django_anymail
+websocket-client
+https://github.com/darklow/django-suit/tarball/v2
+django-import-export>=1.0.1,<2
+-e git://github.com/monouno/django-markdown-editor.git#egg=martor
+-e git://github.com/jbittel/django-mama-cas.git#egg=django-mama-cas
+django-allauth
+gunicorn[gevent]
+raven

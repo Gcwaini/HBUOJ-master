@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title_row %}{% endblock %}
+{% block header %}{% endblock %}
+
+
+{% block media %}
+    <style>
+        #access-panel {
+            margin: 20vh auto 0;
+            display: block;
+            max-width: 500px;
+        }
+
+        #id_access_code {
+            width: 100%;
+        }
+
+        .button-line {
+            text-align: right;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div id="access-panel">
+        <form id="access-code-form" action="" method="post" class="ui attached form segment">
+            {% csrf_token %}
+            <p>{{ _('Please enter your access code:') }}</p>
+            <p>{{ form.access_code }}</p>
+            <p class="button-line">
+                <button class="ui button" type="submit">{{ _('Join Contest') }}</button>
+            </p>
+        </form>
+        {% if form.errors or wrong_code %}
+            <div class="ui bottom attached error message">
+                {{ _('Invalid access code.') }}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

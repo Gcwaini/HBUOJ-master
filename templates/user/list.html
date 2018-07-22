@@ -1,0 +1,16 @@
+{% extends "user/base-users.html" %}
+
+{% block users_media %}
+    <style>
+        #users-table td:nth-child(2), #users-table th:nth-child(2) {
+            border-right: none;
+            text-align: left;
+        }
+    </style>
+{% endblock %}
+{% block content_title %}{{ _('Leaderboard') }}{% endblock %}
+{% block content_title_icon %}<i class="flag outline icon"></i>{% endblock %}
+
+{% block users_table %}
+    {% include "user/users-table.html" %}
+{% endblock %}
