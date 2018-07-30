@@ -1,16 +1,20 @@
 .info-float {
   position: sticky;
-  top: 60px;
   width: 20%; }
 
 #submissions-table {
   border: 0;
   margin-left: 0;
-  box-sizing: content-box; }
-  #submissions-table tr {
-    transition: background-color linear 0.2s; }
-    #submissions-table tr:hover {
-      background: #F2F2F2; }
+  box-sizing: content-box;
+  /*
+  tr {
+    transition: background-color linear 0.2s;
+
+    &:hover {
+      background: #F2F2F2;
+    }
+  }
+  */ }
 
 col.sub-result {
   min-width: 80px; }

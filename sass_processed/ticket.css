@@ -1,13 +1,28 @@
-#ticket-list td.problem {
-  text-align: left;
-  padding-left: 1em;
-  width: 50%; }
-#ticket-list td.users {
-  text-align: center;
-  white-space: nowrap; }
-#ticket-list td.assignees {
-  text-align: center;
-  overflow: hidden;
-  text-overflow: ellipsis; }
+@charset "UTF-8";
+/*
+
+ticket界面已经被ui覆盖，此scss失效
+
+#ticket-list {
+  td {
+    &.problem {
+      text-align: left;
+      padding-left: 1em;
+      width: 50%;
+    }
+
+    &.users {
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    &.assignees {
+      text-align: center;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
+*/
 
 /*# sourceMappingURL=ticket.css.map */

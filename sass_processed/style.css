@@ -1,14 +1,11 @@
 @charset "UTF-8";
 @import "https://cdn.bootcss.com/modern-normalize/0.4.0/modern-normalize.min.css";
 @-ms-viewport {
-  min-width: 480px;
-  max-width: device-width; }
+  min-width: 480px; }
 @-o-viewport {
-  min-width: 480px;
-  max-width: device-width; }
+  min-width: 480px; }
 @viewport {
-  min-width: 480px;
-  max-width: device-width; }
+  min-width: 480px; }
 em {
   font-style: normal; }
 
@@ -529,46 +526,69 @@ math {
 @media only screen and (min-width: 760px) and (min-height: 760px) {
   .hero {
     display: flex; } }
-.table {
+/*.table {
   border-spacing: 0;
   width: 100%;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 0.5em;
-  background: #FFFFFF; }
-  .table.striped tr:nth-child(even) {
-    background: #f7f7f7; }
-  .table thead th {
-    vertical-align: middle; }
-    .table thead th:first-child {
-      border-top-left-radius: 6px; }
-    .table thead th:last-child {
-      border-top-right-radius: 6px; }
-  .table th {
+  background: #FFFFFF;
+
+  &.striped tr:nth-child(even) {
+    background: #f7f7f7;
+  }
+
+  thead th {
+    vertical-align: middle;
+
+    &:first-child {
+      border-top-left-radius: $table_header_rounding;
+    }
+
+    &:last-child {
+      border-top-right-radius: $table_header_rounding;
+    }
+  }
+
+  th {
     height: 2em;
     color: #FFF;
-    background-color: #78909c;
+    background-color: $widget_black;
     padding: 4px 10px;
     vertical-align: middle;
     text-align: center;
     white-space: nowrap;
     font-weight: 600;
-    font-size: 1.1em; }
-    .table th:first-child {
-      border-top-left-radius: 6px; }
-    .table th:last-child {
-      border-top-right-radius: 6px; }
-  .table td {
+    font-size: 1.1em;
+
+    &:first-child {
+      border-top-left-radius: $table_header_rounding;
+    }
+
+    &:last-child {
+      border-top-right-radius: $table_header_rounding;
+    }
+  }
+
+  td {
     padding: 7px 5px;
     vertical-align: middle;
-    text-align: center; }
-  .table tr:not(:first-child) th {
-    border-radius: 0; }
-  .table tr:last-child th {
-    border-bottom-left-radius: 6px; }
-  .table thead tr th {
-    border-bottom-left-radius: 0 !important; }
+    text-align: center;
+  }
 
+  // Monkey-patches for awkward table rounding
+  tr:not(:first-child) th {
+    border-radius: 0;
+  }
+
+  tr:last-child th {
+    border-bottom-left-radius: $table_header_rounding;
+  }
+
+  thead tr th {
+    border-bottom-left-radius: 0 !important;
+  }
+}*/
 .mwe-math-mathml-inline {
   display: inline !important; }
 
@@ -722,20 +742,16 @@ img.inline-math {
   padding: 5px 0; }
 
 #problem-table td.category {
-  text-align: center;
   white-space: nowrap; }
 #problem-table td.problem {
   text-align: left;
   padding-left: 1em;
   width: 50%; }
 #problem-table td.pp {
-  text-align: center;
   width: 100%; }
 #problem-table td.users {
-  text-align: center;
   white-space: nowrap; }
 #problem-table td.types {
-  text-align: center;
   overflow: hidden;
   text-overflow: ellipsis; }
 #problem-table td.ac-rate {
@@ -909,6 +925,11 @@ ul.problem-list {
   .problem-nav a:hover {
     background-color: #eee; }
 
+/*
+
+主要配置排名界面的字体，字体颜色，图标与界面格式
+
+*/
 .admin a, .admin {
   color: black !important;
   font-weight: bold !important; }
@@ -1631,11 +1652,16 @@ ul.select2-selection__rendered {
 #submissions-table {
   border: 0;
   margin-left: 0;
-  box-sizing: content-box; }
-  #submissions-table tr {
-    transition: background-color linear 0.2s; }
-    #submissions-table tr:hover {
-      background: #F2F2F2; }
+  box-sizing: content-box;
+  /*
+  tr {
+    transition: background-color linear 0.2s;
+
+    &:hover {
+      background: #F2F2F2;
+    }
+  }
+  */ }
 
 col.sub-result {
   min-width: 80px; }
@@ -1993,16 +2019,30 @@ label[for="language"], label[for="status"] {
     height: auto;
     padding: 7px 5px; }
 
-#ticket-list td.problem {
-  text-align: left;
-  padding-left: 1em;
-  width: 50%; }
-#ticket-list td.users {
-  text-align: center;
-  white-space: nowrap; }
-#ticket-list td.assignees {
-  text-align: center;
-  overflow: hidden;
-  text-overflow: ellipsis; }
+/*
+
+ticket界面已经被ui覆盖，此scss失效
+
+#ticket-list {
+  td {
+    &.problem {
+      text-align: left;
+      padding-left: 1em;
+      width: 50%;
+    }
+
+    &.users {
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    &.assignees {
+      text-align: center;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
+*/
 
 /*# sourceMappingURL=style.css.map */

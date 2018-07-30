@@ -1,13 +1,10 @@
 @charset "UTF-8";
 @-ms-viewport {
-  min-width: 480px;
-  max-width: device-width; }
+  min-width: 480px; }
 @-o-viewport {
-  min-width: 480px;
-  max-width: device-width; }
+  min-width: 480px; }
 @viewport {
-  min-width: 480px;
-  max-width: device-width; }
+  min-width: 480px; }
 em {
   font-style: normal; }
 

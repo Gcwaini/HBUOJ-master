@@ -1,3 +1,9 @@
+@charset "UTF-8";
+/*
+
+主要配置排名界面的字体，字体颜色，图标与界面格式
+
+*/
 .admin a, .admin {
   color: black !important;
   font-weight: bold !important; }

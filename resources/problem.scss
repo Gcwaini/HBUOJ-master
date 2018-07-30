@@ -1,7 +1,8 @@
 #problem-table {
   td {
+    //不对称
     &.category {
-      text-align: center;
+      //text-align: center;
       white-space: nowrap;
     }
 
@@ -12,17 +13,17 @@
     }
 
     &.pp {
-      text-align: center;
+      //text-align: center;
       width: 100%;
     }
 
     &.users {
-      text-align: center;
+      //text-align: center;
       white-space: nowrap;
     }
 
     &.types {
-      text-align: center;
+      //text-align: center;
       overflow: hidden;
       text-overflow: ellipsis;
     }

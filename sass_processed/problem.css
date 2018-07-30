@@ -1,18 +1,14 @@
 #problem-table td.category {
-  text-align: center;
   white-space: nowrap; }
 #problem-table td.problem {
   text-align: left;
   padding-left: 1em;
   width: 50%; }
 #problem-table td.pp {
-  text-align: center;
   width: 100%; }
 #problem-table td.users {
-  text-align: center;
   white-space: nowrap; }
 #problem-table td.types {
-  text-align: center;
   overflow: hidden;
   text-overflow: ellipsis; }
 #problem-table td.ac-rate {
@@ -108,8 +104,7 @@ ul.problem-list {
 
 .pdf-icon {
   position: relative;
-  display: inline-block;
-  font-size: 1.5em; }
+  display: inline-block; }
   .pdf-icon .pdf-icon-logo {
     color: #d40e13; }
   .pdf-icon .pdf-icon-bar {

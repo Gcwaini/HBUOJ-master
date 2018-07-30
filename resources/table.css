@@ -1,41 +1,65 @@
-.table {
+/*.table {
   border-spacing: 0;
   width: 100%;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 0.5em;
-  background: #FFFFFF; }
-  .table.striped tr:nth-child(even) {
-    background: #f7f7f7; }
-  .table thead th {
-    vertical-align: middle; }
-    .table thead th:first-child {
-      border-top-left-radius: 6px; }
-    .table thead th:last-child {
-      border-top-right-radius: 6px; }
-  .table th {
+  background: #FFFFFF;
+
+  &.striped tr:nth-child(even) {
+    background: #f7f7f7;
+  }
+
+  thead th {
+    vertical-align: middle;
+
+    &:first-child {
+      border-top-left-radius: $table_header_rounding;
+    }
+
+    &:last-child {
+      border-top-right-radius: $table_header_rounding;
+    }
+  }
+
+  th {
     height: 2em;
     color: #FFF;
-    background-color: #78909c;
+    background-color: $widget_black;
     padding: 4px 10px;
     vertical-align: middle;
     text-align: center;
     white-space: nowrap;
     font-weight: 600;
-    font-size: 1.1em; }
-    .table th:first-child {
-      border-top-left-radius: 6px; }
-    .table th:last-child {
-      border-top-right-radius: 6px; }
-  .table td {
+    font-size: 1.1em;
+
+    &:first-child {
+      border-top-left-radius: $table_header_rounding;
+    }
+
+    &:last-child {
+      border-top-right-radius: $table_header_rounding;
+    }
+  }
+
+  td {
     padding: 7px 5px;
     vertical-align: middle;
-    text-align: center; }
-  .table tr:not(:first-child) th {
-    border-radius: 0; }
-  .table tr:last-child th {
-    border-bottom-left-radius: 6px; }
-  .table thead tr th {
-    border-bottom-left-radius: 0 !important; }
+    text-align: center;
+  }
+
+  // Monkey-patches for awkward table rounding
+  tr:not(:first-child) th {
+    border-radius: 0;
+  }
+
+  tr:last-child th {
+    border-bottom-left-radius: $table_header_rounding;
+  }
+
+  thead tr th {
+    border-bottom-left-radius: 0 !important;
+  }
+}*/
 
 /*# sourceMappingURL=table.css.map */
