@@ -17,9 +17,11 @@ tr {
   tr:target {
     background: #fff897; }
 
+/*
 th.header.rank {
-  padding-left: 5px; }
-
+  padding-left: 5px;
+}
+*/
 #search-handle {
   width: 100%;
   height: 2.3em; }

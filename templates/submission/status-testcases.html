@@ -7,23 +7,23 @@
 
 {% if submission.status != 'IE' %}
     {% if submission.status == 'QU' %}
-        <h4>{{ _('We are waiting for a suitable judge to process your submission...') }}</h4>
+        <h4 class="ui header">{{ _('We are waiting for a suitable judge to process your submission...') }}</h4>
     {% elif submission.status == 'P' %}
-        <h4>{{ _('Your submission is being processed...') }}</h4>
+        <h4 class="ui header">{{ _('Your submission is being processed...') }}</h4>
     {% elif submission.status == 'CE' %}
-        <h3>{{ _('Compilation Error') }}</h3>
+        <h3 class="ui header">{{ _('Compilation Error') }}</h3>
         <pre>{{ submission.error|safe }}</pre>
     {% else %}
         {% if submission.error %}
-            <h3>{{ _('Compilation Warnings') }}</h3>
+            <h3 class="ui header">{{ _('Compilation Warnings') }}</h3>
             <hr class="half-hr">
-            <br>
+            <br class="ui header">
             <pre>{{ submission.error|safe }}</pre>
         {% endif %}
         {% if is_pretest %}
-            <h3>{{ _('Pretest Execution Results') }}</h3>
+            <h3 class="ui header">{{ _('Pretest Execution Results') }}</h3>
         {% else %}
-            <h3>{{ _('Execution Results') }}</h3>
+            <h3 class="ui header">{{ _('Execution Results') }}</h3>
         {% endif %}
         <hr class="half-hr">
         <br>

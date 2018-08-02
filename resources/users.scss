@@ -32,9 +32,13 @@ tr {
   }
 }
 
+
+/*
 th.header.rank {
   padding-left: 5px;
 }
+*/
+
 
 #search-handle {
   width: 100%;
@@ -55,7 +59,7 @@ th.header.rank {
   }
 
   .header {
-    vertical-align: middle;
+    width: 100%;
   }
 
   .rank, .points, .problems, .username {

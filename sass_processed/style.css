@@ -526,7 +526,10 @@ math {
 @media only screen and (min-width: 760px) and (min-height: 760px) {
   .hero {
     display: flex; } }
-/*.table {
+/*
+$table_header_rounding: 6px;
+
+.table {
   border-spacing: 0;
   width: 100%;
   margin-left: auto;
@@ -588,7 +591,8 @@ math {
   thead tr th {
     border-bottom-left-radius: 0 !important;
   }
-}*/
+}
+*/
 .mwe-math-mathml-inline {
   display: inline !important; }
 
@@ -742,16 +746,20 @@ img.inline-math {
   padding: 5px 0; }
 
 #problem-table td.category {
+  text-align: center;
   white-space: nowrap; }
 #problem-table td.problem {
   text-align: left;
   padding-left: 1em;
   width: 50%; }
 #problem-table td.pp {
+  text-align: center;
   width: 100%; }
 #problem-table td.users {
+  text-align: center;
   white-space: nowrap; }
 #problem-table td.types {
+  text-align: center;
   overflow: hidden;
   text-overflow: ellipsis; }
 #problem-table td.ac-rate {
@@ -926,9 +934,7 @@ ul.problem-list {
     background-color: #eee; }
 
 /*
-
 主要配置排名界面的字体，字体颜色，图标与界面格式
-
 */
 .admin a, .admin {
   color: black !important;
@@ -1051,9 +1057,11 @@ tr {
   tr:target {
     background: #fff897; }
 
+/*
 th.header.rank {
-  padding-left: 5px; }
-
+  padding-left: 5px;
+}
+*/
 #search-handle {
   width: 100%;
   height: 2.3em; }
@@ -1652,16 +1660,11 @@ ul.select2-selection__rendered {
 #submissions-table {
   border: 0;
   margin-left: 0;
-  box-sizing: content-box;
-  /*
-  tr {
-    transition: background-color linear 0.2s;
-
-    &:hover {
-      background: #F2F2F2;
-    }
-  }
-  */ }
+  box-sizing: content-box; }
+  #submissions-table tr {
+    transition: background-color linear 0.2s; }
+    #submissions-table tr:hover {
+      background: #F2F2F2; }
 
 col.sub-result {
   min-width: 80px; }
@@ -2020,9 +2023,6 @@ label[for="language"], label[for="status"] {
     padding: 7px 5px; }
 
 /*
-
-ticket界面已经被ui覆盖，此scss失效
-
 #ticket-list {
   td {
     &.problem {
