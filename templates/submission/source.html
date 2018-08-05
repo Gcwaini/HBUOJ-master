@@ -39,11 +39,13 @@
                             class="tab-icon fa fa-mail-reply"></i> {{ _('Rejudge') }}
                     </a>
                 </li>
+
                 <form id="rejudge-form" action="{{ url('submission_rejudge') }}" method="post">
                     {% csrf_token %}
                     <input type="hidden" name="id" value="{{ submission.id }}">
                     <input type="hidden" name="path" value="{{ url('submission_status', submission.id) }}">
                 </form>
+
             {% endif %}
         </ul>
     </div>
