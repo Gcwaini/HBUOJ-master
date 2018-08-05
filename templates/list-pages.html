@@ -1,31 +1,42 @@
-<ul class="pagination">
+<div class="ui tiny left floated pagination menu">
     {% if page_obj.has_previous() %}
         {% if page_obj.previous_page_number() == 1 and first_page_href != None %}
-            <li><a href="{{ first_page_href }}">«</a></li>
+            <a href="{{ first_page_href }}" class="item">
+                <i class="angle left icon" style="align-items: center"></i>
+            </a>
         {% else %}
-            <li><a href="{{ page_prefix or '' }}{{ page_obj.previous_page_number() }}{{ page_suffix or '' }}">«</a></li>
+            <a href="{{ page_prefix or '' }}{{ page_obj.previous_page_number() }}{{ page_suffix or '' }}" class="item">
+                <i class="angle left icon"></i>
+            </a>
         {% endif %}
     {% else %}
-        <li class="disabled-page"><span>«</span></li>
+        <a class="disabled item">
+            <i class="angle left icon"></i>
+        </a>
     {% endif %}
 
     {% for page in page_obj.page_range %}
         {% if not page %}
             <li class="disabled-page"><span>...</span></li>
         {% else %}
-            <li{% if page == page_obj.number %} class="active-page"{% endif %}><a href="
+            <!--<li{% if page == page_obj.number %} class="active-page"{% endif %}>-->
+            <a href="
                 {%- if page == 1 and first_page_href != None -%}
                     {{ first_page_href }}
                 {%- else -%}
                     {{ page_prefix or '' }}{{ page }}{{ page_suffix or '' }}
                 {%- endif -%}
-            ">{{ page }}</a></li>
+            " class="item">{{ page }}</a>
         {% endif %}
     {% endfor %}
 
     {% if page_obj.has_next() %}
-        <li><a href="{{ page_prefix or '' }}{{ page_obj.next_page_number() }}{{ page_suffix or '' }}">»</a></li>
+        <a href="{{ page_prefix or '' }}{{ page_obj.next_page_number() }}{{ page_suffix or '' }}" class="item">
+            <i class="angle right icon"></i>
+        </a>
     {% else %}
-        <li class="disabled-page"><span>»</span></li>
+        <a class="disabled item">
+            <i class="angle right icon"></i>
+        </a>
     {% endif %}
-</ul>
+</div>

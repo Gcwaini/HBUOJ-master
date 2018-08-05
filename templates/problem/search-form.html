@@ -1,10 +1,11 @@
 <div class="sidebox">
-    <h3>{{ _('Problem search') }} <i class="fa fa-search"></i>
-    </h3>
-    <div class="sidebox-content">
+    <h4 class="ui dividing header">&nbsp;{{ _('Problem search') }}
+        <i class="fa fa-search"></i>
+    </h4>
+    <div class="ui segment">
         <form id="filter-form" name="form" action="" method="get">
             <div>
-                <input id="search" type="text" name="search" value="{{ search_query or '' }}"
+                <input id="search" class="prompt" type="text" name="search" value="{{ search_query or '' }}"
                        placeholder="{{ _('Search problems...') }}">
             </div>
             {% if has_fts %}
@@ -60,8 +61,12 @@
             <input id="point-start" type="hidden" name="point_start" {% if point_start and point_start != point_values.min %}value="{{ point_start }}"{% else %}disabled{% endif %}>
             <input id="point-end" type="hidden" name="point_end" {% if point_end and point_end != point_values.max %}value="{{ point_end }}"{% else %}disabled{% endif %}>
             <div class="form-submit-group">
-                <a id="go" class="button button-primary button-width-small">{{ _('Go') }}</a>
-                <a id="random" class="button button-primary button-width-small">{{ _('Random') }}</a>
+                <a id="go" class="button button-primary button-width-small">
+                    <button class="mini ui button">{{ _('Go') }}</button>
+                </a>
+                <a id="random" class="button button-primary button-width-small">
+                    <button class="mini ui button">{{ _('Random') }}</button>
+                </a>
             </div>
         </form>
     </div>

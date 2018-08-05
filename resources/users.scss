@@ -1,3 +1,4 @@
+/*
 @media (min-width: 400px) {
   #content-right {
     &.users {
@@ -32,13 +33,9 @@ tr {
   }
 }
 
-
-/*
 th.header.rank {
   padding-left: 5px;
 }
-*/
-
 
 #search-handle {
   width: 100%;
@@ -59,7 +56,7 @@ th.header.rank {
   }
 
   .header {
-    width: 100%;
+    vertical-align: middle;
   }
 
   .rank, .points, .problems, .username {
@@ -263,3 +260,4 @@ table.user-info-page > tbody > tr > td {
   width: 100%;
   min-width: 760px;
 }
+*/

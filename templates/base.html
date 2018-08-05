@@ -183,7 +183,6 @@
         </style>
     </noscript>
 </head>
-
 <body>
 <nav id="navigation" class="unselectable">
     <div id="nav-container">
@@ -279,14 +278,14 @@
             <div class="messagelist">
                 {% for message in messages %}
                     <div class="ui float message {{ message.tags }}">
-                        <i class="close icon"></i>
+                        <a href=""><i class="close icon"></i></a>
                         {{ message }}
                     </div>
                 {% endfor %}
             </div>
         {% endif %}
         {% block title_row %}
-            {% block h2_row %}<h2 class="ui header" style="margin-bottom: .5em;margin-top: 1.5em;">{% endblock %}
+            <h2 class="ui header" style="margin-bottom: .5em;margin-top: 1.5em;">
                 {% block content_title_icon %}{% endblock %}
                 <div class="content">
                     {% block content_title %}

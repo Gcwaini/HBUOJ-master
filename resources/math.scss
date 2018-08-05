@@ -1,3 +1,4 @@
+/*
 .mwe-math-mathml-inline {
   display: inline !important;
 }
@@ -32,10 +33,10 @@
   font-family: 'Latin Modern Math';
   src: url("libs/latinmodernmath/latinmodern-math.eot");
 
-  /* IE9 Compat Modes */
+  !* IE9 Compat Modes *!
   src: local("Latin Modern Math"), local("LatinModernMath-Regular"), url("libs/latinmodernmath/latinmodern-math.eot?#iefix") format("embedded-opentype"), url("libs/latinmodernmath/latinmodern-math.woff2") format("woff2"), url("libs/latinmodernmath/latinmodern-math.woff") format("woff"), url("libs/latinmodernmath/latinmodern-math.ttf") format("truetype");
 
-  /* Safari, Android, iOS */
+  !* Safari, Android, iOS *!
   font-weight: normal;
   font-style: normal;
 }
@@ -47,3 +48,4 @@ math {
 img.inline-math {
   display: inline;
 }
+*/

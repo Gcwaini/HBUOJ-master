@@ -62,12 +62,14 @@
     <div id="common-content">
         <div id="content-left" class="users">
             {% if page_obj and page_obj.num_pages > 1 %}
-                <div style="margin-bottom: 7px; margin-top: 3px;">
+                <div style="margin-bottom: 20px; margin-top: 3px;">
                     {% include "list-pages.html" %}
-                    <form id="search-form" name="form" action="{{ url('user_ranking_redirect') }}" method="get">
-                        <input id="search-handle" type="text" name="search"
+                    <div style="margin-bottom: 7px; margin-top: 3px;margin-left: 1580px">
+                        <form id="search-form" name="form" action="{{ url('user_ranking_redirect') }}" method="get" class="ui form">
+                            <input id="search-handle" type="text" name="search"
                                placeholder="{{ _('Search by handle...') }}">
-                    </form>
+                        </form>
+                    </div>
                 </div>
             {% endif %}
 
@@ -76,7 +78,7 @@
             </table>
 
             {% if page_obj and page_obj.num_pages > 1 %}
-                <div style="margin-top:10px;">{% include "list-pages.html" %}</div>
+                <div style="margin-top:20px;">{% include "list-pages.html" %}</div>
             {% endif %}
         </div>
     </div>

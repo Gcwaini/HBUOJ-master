@@ -4,17 +4,17 @@
 
 @-ms-viewport {
   min-width: 480px;
-  //max-width: device-width;
+  max-width: device-width;
 }
 
 @-o-viewport {
   min-width: 480px;
-  //max-width: device-width;
+  max-width: device-width;
 }
 
 @viewport {
   min-width: 480px;
-  //max-width: device-width;
+  max-width: device-width;
 }
 
 em {
@@ -66,6 +66,7 @@ table.sortable thead {
   cursor: default;
 }
 
+/*
 th {
   &.tablesorter-headerAsc:after {
     content: " ▴";
@@ -75,6 +76,7 @@ th {
     content: " ▾";
   }
 }
+*/
 
 div {
   &.tablesorter-header-inner {
@@ -95,13 +97,17 @@ hr {
   padding: 0;
 }
 
+/*
 .dashed {
   border-bottom: 1px dashed $border_gray;
 }
+*/
 
+/*
 th {
   vertical-align: middle;
 }
+*/
 
 div.info-float {
   float: right;
@@ -110,14 +116,14 @@ div.info-float {
 }
 
 footer {
-  background: #eeeeee;
+  background: #f9f8f8;
   display: block;
   width: 100%;
   position: absolute;
   bottom: 0;
 }
 
-body {
+/*body {
   position: relative;
   min-height: 100%;
   margin: 0 auto;
@@ -126,17 +132,17 @@ body {
   line-height: 1.231;
   background: $background_light_gray;
   font-family: "Segoe UI", "Lucida Grande", Arial, sans-serif;
-  color: #000;
+  #color: #000;
   height: 100%;
-}
+}*/
 
-.unselectable {
+/*.unselectable {
   cursor: default;
-}
+}*/
 
-b {
+/*b {
   font-weight: bold;
-}
+}*/
 
 /*------------------------------------------------------------
   Typography
@@ -213,8 +219,9 @@ h6 {
     font-size: 1rem;
   }
 }
+/*
 
-/*header {
+header {
   background: #111;
   color: #aaa;
   text-align: left;
@@ -222,9 +229,10 @@ h6 {
   height: 60px;
   margin-top: -10px;
   padding: 10px 10px 10px 5%;
-}*/
+}
+*/
 
-//用户个人信息列表
+
 #user-links {
   top: 0;
   right: 0;
@@ -274,13 +282,11 @@ h6 {
   }
 }
 
-//！！！
 #nav-shadow {
   height: 3px;
   background: linear-gradient(rgba(0, 0, 0, 0.26), transparent);
 }
 
-//导航栏背景
 #nav-container {
   background: $widget_black;
   height: 100%;
@@ -289,7 +295,6 @@ h6 {
   // filter: alpha(opacity=77)
 }
 
-//导航栏宽度
 #navigation {
   position: fixed;
   top: 0;
@@ -297,7 +302,6 @@ h6 {
   right: 0;
 }
 
-//导航栏
 nav {
   position: relative;
   position: -webkit-sticky;
@@ -318,14 +322,13 @@ nav {
     background: transparent;
 
     // line-height: 35px;
-    //导航栏
+
     li {
       display: inline-block;
       color: #FFF;
       text-transform: uppercase;
       position: relative;
 
-      //导航栏格式
       &.home-nav-element a {
         padding: 0;
         height: 44px;
@@ -337,7 +340,6 @@ nav {
         }
       }
 
-      //题库，提交等buttion
       a, button {
         display: inline-block;
         text-decoration: none;
@@ -365,7 +367,6 @@ nav {
         }
       }
 
-      //用户个人信息
       ul {
         padding: 0;
         position: absolute;
@@ -398,7 +399,6 @@ nav {
         }
       }
 
-      //用户信息登出button
       button {
         background: none;
         text-align: left;
@@ -408,22 +408,19 @@ nav {
         height: auto;
       }
 
-      //用户信息下拉菜单
       &:hover > ul, &:active > ul, &:focus > ul {
         display: block !important;
       }
 
-      //！！！
-      /*&.home-nav-element a:hover {
+      &.home-nav-element a:hover {
         border-bottom: 0;
         padding-top: 0;
         padding-bottom: 0;
         background: transparent;
-      }*/
+      }
     }
   }
 
-  //导航栏的格式
   .nav-divider {
     width: 1px;
     vertical-align: middle;
@@ -433,44 +430,41 @@ nav {
     margin-right: 1px;
     border-right: 3px solid rgba(255, 255, 255, 0.15);
   }
-
 }
 
-//！！！
 /*hr {
   color: rgba(0, 0, 0, 0.2);
 }*/
 
-
 #content {
   margin: 32px auto auto;
-  // Header
-  width: 80%;
-  height: 100%;
-  min-height: 25em;
-  display: block;
 
-  .title {
+  // Header
+  //width: 80%;
+  //height: 100%;
+  //min-height: 25em;
+  //display: block;
+
+  /*.title {
     color: #393630;
-  }
+  }*/
 }
 
 footer {
   text-align: center;
 }
 
-
-html {
+/*html {
   position: relative;
   height: 100%;
-}
+}*/
 
 a {
   text-decoration: none;
   display: inline;
 }
 
-noscript #noscript {
+/*noscript #noscript {
   font-family: Arial, sans-serif;
   font-size: 111%;
   color: white;
@@ -482,9 +476,9 @@ noscript #noscript {
   right: 0;
   position: fixed;
   z-index: 100;
-}
+}*/
 
-#announcement {
+/*#announcement {
   font-family: Arial, sans-serif;
   font-size: 111%;
   color: white;
@@ -502,11 +496,11 @@ noscript #noscript {
   a {
     color: orange;
   }
-}
+}*/
 
-.time {
+/*.time {
   color: #555;
-}
+}*/
 
 .toggle {
   font-weight: bold;
@@ -520,19 +514,17 @@ noscript #noscript {
   }
 }
 
-//一个多余的菜单
 #navicon {
   display: none;
 }
 
-//！！！
-/*#nav-placeholder {
+#nav-placeholder {
   height: 47px;
   max-width: 107em;
   background: white;
   border-right: 1px solid $border_gray;
   border-left: 1px solid $border_gray;
-}*/
+}
 
 #contest-info {
   font-size: 1.25em;
@@ -571,7 +563,6 @@ noscript #noscript {
   flex: 1 1 1px;
 }
 
-//个人信息图标位置
 #user-links {
   height: 100%;
   display: flex;
@@ -594,12 +585,11 @@ noscript #noscript {
   }
 }
 
-
 #page-container {
   min-height: 100%;
   position: relative;
   margin: 0 auto;
-  background: #f9f8f8;
+  //background: #f9f8f8;
 }
 
 // border-bottom: 1px solid rgb(204, 204, 204)

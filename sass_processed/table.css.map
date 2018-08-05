@@ -1,6 +1,6 @@
 {
 "version": 3,
-"mappings": "AAEA;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;EAkEE",
+"mappings": "AAAA;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;EAqEE",
 "sources": ["../resources/table.scss"],
 "names": [],
 "file": "table.css"

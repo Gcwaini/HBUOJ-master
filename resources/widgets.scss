@@ -1,6 +1,6 @@
 @import "vars";
 
-.social i {
+/*.social i {
     display: inline;
     font-size: 1.9em;
 }
@@ -23,7 +23,7 @@
 
 .social {
     float: right;
-}
+}*/
 
 // Bootstrap-y copy button
 .btn-clipboard {
@@ -130,9 +130,10 @@
 }
 
 // Bootstrap-y pagination
+/*
 ul.pagination a:hover {
-    color: #FFF;
-    background: rgba(0, 0, 0, 0.55);
+    color: black;
+    background: #f9f8f8;
 }
 
 ul.pagination {
@@ -168,8 +169,8 @@ ul.pagination {
                     padding: 4px 12px;
                     line-height: 1.42857;
                     text-decoration: none;
-                    color: #FFF;
-                    background-color: $widget_black;
+                    color: black;
+                    background-color: #f9f8f8;
                     border: 1px solid #505050;
                     margin-left: -1px;
                 }
@@ -185,7 +186,7 @@ ul.pagination {
 
             span {
                 color: #888;
-                background-color: $widget_black;
+                background-color: #f9f8f8;
                 border-color: #505050;
             }
         }
@@ -209,6 +210,7 @@ ul.pagination {
         }
     }
 }
+*/
 
 .alert {
     padding: 15px;
@@ -321,10 +323,11 @@ ul.select2-selection__rendered {
 }
 
 .sidebox-content {
-    border: 1px solid $border_gray;
+    //border: 1px solid $border_gray;
     border-top: none;
     margin: 0 -5px;
     padding: 1px 0.5em 3px;
+    font-size: 1.2em;
 
     &.sidebox-table {
         border: none;
@@ -341,6 +344,11 @@ ul.select2-selection__rendered {
     border-top-right-radius: $widget_border_radius;
     padding: 0 5px !important;
     padding-bottom: 1.5em !important;
+}
+
+.sidebox .button {
+    background: #f9f8f8;
+    //box-shadow: 0PX 0PX 0PX 1PX rgba(34, 36, 38, 0.15) inset;
 }
 
 .ws-closed {

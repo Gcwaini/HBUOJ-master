@@ -64,10 +64,6 @@
     line-height: 1.3;
     font-size: 2.3em;
     padding-bottom: 0.15em; }
-    #banner a.date:link, #banner a.date:visited {
-      color: #5B80B9; }
-    #banner a.date:hover {
-      color: #0645AD; }
   #banner #time {
     text-align: center;
     display: block;

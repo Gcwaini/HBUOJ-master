@@ -152,25 +152,30 @@
     width: 100% !important;
     position: static !important;
     box-sizing: border-box; } }
-a.view-pdf {
+/*a.view-pdf {
   padding-top: 0.6em;
-  display: inline-block; }
-
-.problem-title {
+  display: inline-block;
+}*/
+/*.problem-title {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  padding-bottom: 10px; }
-  .problem-title .spacer {
+  padding-bottom: 10px;
+
+  .spacer {
     display: inline-block;
-    flex: 1 1 1px; }
-
-.info-float .fa {
+    flex: 1 1 1px;
+  }
+}*/
+/*.info-float .fa {
   color: #000;
-  padding-right: 0.2em; }
-
-#problem-types .toggled, #allowed-langs .toggled {
-  margin-left: 1.3em; }
+  padding-right: 0.2em;
+}*/
+/*#problem-types, #allowed-langs {
+  .toggled {
+    margin-left: 1.3em;
+  }
+}*/
 
 /*# sourceMappingURL=content-description.css.map */

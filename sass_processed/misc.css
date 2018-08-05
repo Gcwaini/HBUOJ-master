@@ -1,29 +1,50 @@
+/*
+@import "vars";
+
 #judge-versions {
-  display: block; }
-  #judge-versions .version {
-    font-family: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace; }
-  #judge-versions .version-blank {
-    background: #eee; }
-  #judge-versions .version-latest {
-    background: #b3ff3fe6; }
-  #judge-versions .version-outdated {
+  display: block;
+
+  .version {
+    font-family: $monospace-fonts;
+  }
+
+  .version-blank {
+    background: #eee;
+  }
+
+  .version-latest {
+    background: #b3ff3fe6;
+  }
+
+  .version-outdated {
     background: #f00c;
-    color: white; }
-  #judge-versions tbody {
-    display: block; }
-  #judge-versions tr {
+    color: white;
+  }
+
+  tbody {
+    display: block;
+  }
+
+  tr {
     display: flex;
     flex-direction: row;
-    padding: 0; }
-    #judge-versions tr:first-child {
+    padding: 0;
+
+    &:first-child {
       position: sticky;
       top: 42px;
-      line-height: 1.8em; }
-  #judge-versions td, #judge-versions th {
+      line-height: 1.8em;
+    }
+  }
+
+  td, th {
     display: block;
     flex: 1 0 110px;
     overflow-x: hidden;
     height: auto;
-    padding: 7px 5px; }
+    padding: 7px 5px;
+  }
+}
+*/
 
 /*# sourceMappingURL=misc.css.map */

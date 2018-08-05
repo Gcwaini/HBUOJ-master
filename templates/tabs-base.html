@@ -1,9 +1,19 @@
 {% macro make_tab(name, fa, url, text) %}
+    <a href="{{ url }}">
+    <button type="button" class="ui button">
+
+        <i class="tab-icon fa {{ fa }}"></i>
+        {{ text }}
+
+    </button>
+    </a>
+    <!--
     <li class="tab{% if tab == name %} active{% endif %}">
         {%- if url %}<a href="{{ url }}">{% else %}<span>{% endif -%}
         <i class="tab-icon fa {{ fa }}"></i> {{ text }}
         {%- if url %}</a>{% else %}</span>{% endif -%}
     </li>
+    -->
 {% endmacro %}
 
 <div class="page-title">
