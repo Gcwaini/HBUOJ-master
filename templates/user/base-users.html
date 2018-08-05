@@ -64,7 +64,7 @@
             {% if page_obj and page_obj.num_pages > 1 %}
                 <div style="margin-bottom: 20px; margin-top: 3px;">
                     {% include "list-pages.html" %}
-                    <div style="margin-bottom: 7px; margin-top: 3px;margin-left: 1580px">
+                    <div style="margin-bottom: 7px; margin-top: 3px;margin-left: 90%">
                         <form id="search-form" name="form" action="{{ url('user_ranking_redirect') }}" method="get" class="ui form">
                             <input id="search-handle" type="text" name="search"
                                placeholder="{{ _('Search by handle...') }}">
@@ -72,6 +72,7 @@
                     </div>
                 </div>
             {% endif %}
+            <div class="ui divider"></div>
 
             <table id="users-table" class="ui definition table">
                 {% block users_table %}{% endblock %}
