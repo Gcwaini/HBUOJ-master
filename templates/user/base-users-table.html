@@ -1,14 +1,15 @@
 <thead>
 <tr>
-    <th class="one wide">{{ rank_header or _("Rank") }}</th>
+    <th class="header">{{ rank_header or _("Rank") }}</th>
     {% block after_rank_head %}{% endblock %}
-    <th class="ten wide">{{ _('Username') }}</th>
+    <th class="header username">{{ _('Username') }}</th>
     {% block before_point_head %}{% endblock %}
-    <th class="one wide">
+
+    <th class="header points">
         {% if sort_links %}<a href="{{ sort_links.performance_points }}">{% endif %}
         {{ _('Points') }}
         {%- if sort_links %}{{ sort_order.performance_points }}</a>{% endif %}
-    </th class="one wide">
+    </th>
     {% block after_point_head %}{% endblock %}
 </tr>
 </thead>
@@ -18,12 +19,12 @@
     <tr id="user-{{ user.user.username }}">
         <td>{{ rank }}</td>
         {% block after_rank scoped %}{% endblock %}
-        <td>
+        <td class="user-name">
             {{ link_user(user.user) }}
         </td>
         {% block before_point scoped %}{% endblock %}
         {% block point scoped %}
-            <td title="{{ user.performance_points|floatformat(2) }}">
+            <td title="{{ user.performance_points|floatformat(2) }}" class="user-points">
                 {{ user.performance_points|floatformat(0) }}
             </td>
         {% endblock %}
