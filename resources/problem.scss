@@ -1,57 +1,3 @@
-/*.page-title .button{
-  background: #f9f8f8 ;
-  margin-top: 0.7em;
-  box-shadow: 0PX 0PX 0PX 1PX rgba(34, 36, 38, 0.15) inset;
-}*/
-/*
-
-#problem-table {
-  td {
-    &.category {
-      text-align: center;
-      white-space: nowrap;
-    }
-
-    &.problem {
-      text-align: left;
-      padding-left: 1em;
-      width: 50%;
-    }
-
-    &.pp {
-      text-align: center;
-      width: 100%;
-    }
-
-    &.users {
-      text-align: center;
-      white-space: nowrap;
-    }
-
-    &.types {
-      text-align: center;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    &.ac-rate {
-      white-space: nowrap;
-    }
-
-    &.points {
-      white-space: nowrap;
-    }
-  }
-  tr {
-    transition: background-color linear 0.2s;
-
-    &:hover {
-      background: #eaeaea;
-    }
-  }
-}
-*/
-
 #filter-form {
   //vertical-align: top;
   margin-bottom: 0.5em;
@@ -90,66 +36,17 @@
     //box-shadow: 0PX 0PX 0PX 1PX rgba(34, 36, 38, 0.15) inset;
   }
 }
-/*
-#content-left {
-  &.problems {
-    flex: 73.5%;
-  }
-}*/
 
 #search {
   width: 100%;
   height: 2.3em;
 }
 
-/*label[for="category"], label[for="type"] {
-  padding-bottom: 0.25em;
-  display: block;
-}*/
 
 #category {
   margin-top: 0.5em;
   width: 100%;
 }
-
-/*#types {
-  width: 100%;
-}*/
-
-/*span.type-tag {
-  white-space: nowrap;
-}*/
-
-
-/*ul.problem-list {
-  list-style: none;
-  padding-left: 1em;
-  padding-right: 0.5em;
-
-  li {
-    margin-bottom: 0.5em;
-  }
-}*/
-
-/*.pi-name {
-  font-weight: bold;
-}*/
-
-/*.pi-name:after {
-  content: " ";
-}*/
-
-/*.authors-value {
-  padding-left: 1.5em;
-}*/
-
-/*.lang-name:after {
-  content: ": ";
-}*/
-
-/*.lang-limit {
-  margin-left: 1.5em;
-}*/
 
 .solved-problem-color {
   color: #44AD41;
@@ -162,69 +59,6 @@
 .attempted-problem-color {
   color: orange;
 }
-
-/*.submissions-left {
-  color: black;
-  font-weight: 600;
-  text-align: center;
-  margin-top: 0.5em;
-}*/
-/*
-.no-submissions-left {
-  color: red;
-}*/
-
-/*.pdf-icon {
-  position: relative;
-  display: inline-block;
-
-  .pdf-icon-logo {
-    color: #d40e13;
-  }
-
-  .pdf-icon-bar {
-    height: 0.2em;
-    display: block;
-    position: absolute;
-    top: 0.3em;
-    background: #d40e13;
-    width: 0.6em;
-    margin-left: -0.15em;
-  }
-}*/
-
-
-/*.license {
-  float: left;
-  font-size: 0.85em;
-
-  a {
-    color: gray;
-    text-decoration: none;
-  }
-}*/
-
-/*.clarify {
-  float: right;
-}*/
-
-/*@media (max-width: 550px) {
-  #problem-table tr :nth-child(6) {
-    display: none;
-  }
-}*/
-/*
-@media (max-width: 450px) {
-  #problem-table tr :nth-child(4) {
-    display: none;
-  }
-}*/
-
-/*@media (max-width: 700px) {
-  #problem-table tr :nth-child(3) {
-    display: none;
-  }
-}*/
 
 #problem-table th a {
   //color: inherit;
@@ -272,23 +106,3 @@
   }
 }
 
-/*.problem-content {
-  margin-bottom: 1em;
-}*/
-
-/*.problem-nav {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-  line-height: 2.5em;
-
-  a {
-    display: block;
-    text-align: center;
-    text-decoration: none;
-  }
-
-  a:hover {
-    background-color: #eee;
-  }
-}*/

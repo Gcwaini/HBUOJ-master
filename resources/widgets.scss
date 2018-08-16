@@ -1,30 +1,5 @@
 @import "vars";
 
-/*.social i {
-    display: inline;
-    font-size: 1.9em;
-}
-
-.facebook-this, .tweet-this, .gplus-this {
-    display: inline;
-}
-
-.tweet-this i {
-    color: #55ACEE;
-}
-
-.facebook-this it {
-    color: #133783;
-}
-
-.gplus-this i {
-    color: #DD4B38;
-}
-
-.social {
-    float: right;
-}*/
-
 // Bootstrap-y copy button
 .btn-clipboard {
     top: 0;
@@ -129,88 +104,6 @@
     }
 }
 
-// Bootstrap-y pagination
-/*
-ul.pagination a:hover {
-    color: black;
-    background: #f9f8f8;
-}
-
-ul.pagination {
-    display: inline-block;
-    padding-left: 0;
-    margin: 0;
-    border-radius: $widget_border_radius;
-
-    > {
-        li {
-            display: inline;
-
-            &:first-child > {
-                a, span {
-                    margin-left: 0;
-                    border-top-left-radius: $widget_border_radius;
-                    border-bottom-left-radius: $widget_border_radius;
-                }
-            }
-
-            &:last-child > {
-                a, span {
-                    margin-left: 0;
-                    border-top-right-radius: $widget_border_radius;
-                    border-bottom-right-radius: $widget_border_radius;
-                }
-            }
-
-            > {
-                a, span {
-                    position: relative;
-                    float: left;
-                    padding: 4px 12px;
-                    line-height: 1.42857;
-                    text-decoration: none;
-                    color: black;
-                    background-color: #f9f8f8;
-                    border: 1px solid #505050;
-                    margin-left: -1px;
-                }
-            }
-        }
-
-        .disabled-page > {
-            a {
-                color: #888;
-                background-color: $widget_black;
-                border-color: #282828;
-            }
-
-            span {
-                color: #888;
-                background-color: #f9f8f8;
-                border-color: #505050;
-            }
-        }
-
-        .active-page > {
-            a {
-                z-index: 2;
-                color: #FFF;
-                background-color: $highlight_blue;
-                border-color: transparent;
-                cursor: default;
-            }
-
-            span {
-                z-index: 2;
-                color: #FFF;
-                background-color: $highlight_blue;
-                border-color: transparent;
-                cursor: default;
-            }
-        }
-    }
-}
-*/
 
 .alert {
     padding: 15px;

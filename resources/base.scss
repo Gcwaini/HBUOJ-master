@@ -66,18 +66,6 @@ table.sortable thead {
   cursor: default;
 }
 
-/*
-th {
-  &.tablesorter-headerAsc:after {
-    content: " ▴";
-  }
-
-  &.tablesorter-headerDesc:after {
-    content: " ▾";
-  }
-}
-*/
-
 div {
   &.tablesorter-header-inner {
     display: inline;
@@ -97,17 +85,6 @@ hr {
   padding: 0;
 }
 
-/*
-.dashed {
-  border-bottom: 1px dashed $border_gray;
-}
-*/
-
-/*
-th {
-  vertical-align: middle;
-}
-*/
 
 div.info-float {
   float: right;
@@ -122,27 +99,6 @@ footer {
   position: absolute;
   bottom: 0;
 }
-
-/*body {
-  position: relative;
-  min-height: 100%;
-  margin: 0 auto;
-  max-width: 107em;
-  font-size: $base_font_size;
-  line-height: 1.231;
-  background: $background_light_gray;
-  font-family: "Segoe UI", "Lucida Grande", Arial, sans-serif;
-  #color: #000;
-  height: 100%;
-}*/
-
-/*.unselectable {
-  cursor: default;
-}*/
-
-/*b {
-  font-weight: bold;
-}*/
 
 /*------------------------------------------------------------
   Typography
@@ -219,18 +175,6 @@ h6 {
     font-size: 1rem;
   }
 }
-/*
-
-header {
-  background: #111;
-  color: #aaa;
-  text-align: left;
-  display: block;
-  height: 60px;
-  margin-top: -10px;
-  padding: 10px 10px 10px 5%;
-}
-*/
 
 
 #user-links {
@@ -438,69 +382,17 @@ nav {
 
 #content {
   margin: 32px auto auto;
-
-  // Header
-  //width: 80%;
-  //height: 100%;
-  //min-height: 25em;
-  //display: block;
-
-  /*.title {
-    color: #393630;
-  }*/
 }
 
 footer {
   text-align: center;
 }
 
-/*html {
-  position: relative;
-  height: 100%;
-}*/
-
 a {
   text-decoration: none;
   display: inline;
 }
 
-/*noscript #noscript {
-  font-family: Arial, sans-serif;
-  font-size: 111%;
-  color: white;
-  font-weight: bold;
-  background: $announcement_red;
-  text-align: center;
-  padding: 5px 0;
-  left: 0;
-  right: 0;
-  position: fixed;
-  z-index: 100;
-}*/
-
-/*#announcement {
-  font-family: Arial, sans-serif;
-  font-size: 111%;
-  color: white;
-  font-weight: bold;
-  background: $announcement_red;
-  text-align: center;
-  max-width: 30%;
-  position: fixed;
-  border-radius: $widget_border_radius;
-  z-index: 100;
-  bottom: -4px;
-  right: -4px;
-  padding: 5px 6px 6px 5px;
-
-  a {
-    color: orange;
-  }
-}*/
-
-/*.time {
-  color: #555;
-}*/
 
 .toggle {
   font-weight: bold;
@@ -529,9 +421,6 @@ a {
 #contest-info {
   font-size: 1.25em;
 
-  // border: 5px solid $highlight_blue;
-  // border-left: 5px dotted white;
-  // border-radius: 0 $widget_border_radius $widget_border_radius 0;
   background: rgba(0, 0, 0, 0.77);
   z-index: 100;
   padding: 10px 12px;
@@ -592,9 +481,6 @@ a {
   //background: #f9f8f8;
 }
 
-// border-bottom: 1px solid rgb(204, 204, 204)
-// border-bottom-left-radius: 4px
-// border-bottom-right-radius: 4px
 
 #content-body {
   padding-bottom: 4em;
